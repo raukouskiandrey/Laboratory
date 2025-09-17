@@ -4,9 +4,9 @@
 
 class App {
 private:
-    Employee* employees = nullptr;
-    int size = 0;
-    int capacity = 0;
+    Employee* employees ;
+    int size ;
+    int capacity ;
 
     void resize();
     void showMenu() const; 
