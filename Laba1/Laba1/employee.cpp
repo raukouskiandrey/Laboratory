@@ -112,11 +112,9 @@ void Employee::edit(const App& app) {
         cout << "Ready." << endl;
         break;
     case 4: {
-        int typeChoice = safeInputInt("New position:\n"
+        switch (int typeChoice = safeInputInt("New position:\n"
             "1 - Laborant\n2 - Secretary\n3 - Manager\n4 - Engineer\n5 - Director\n6 - Accountan\n"
-            "Choice: ");
-
-        switch (typeChoice) {
+            "Choice: ");typeChoice) {
         case 1:
             position = EmployeePosition::LABORANT;
             break;
