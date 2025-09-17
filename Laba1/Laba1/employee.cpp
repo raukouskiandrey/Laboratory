@@ -39,26 +39,27 @@ void Employee::getEmployDataWithoutId() {
         "Choice: ");
 
     switch (typeChoice) {
+        using enum EmployeePosition;
     case 1:
-        position = EmployeePosition::LABORANT;
+        position = LABORANT;
         break;
     case 2:
-        position = EmployeePosition::SECRETARY;
+        position = SECRETARY;
         break;
     case 3:
-        position = EmployeePosition::MANAGER;
+        position = MANAGER;
         break;
     case 4:
-        position = EmployeePosition::ENGINEER;
+        position = ENGINEER;
         break;
     case 5:
-        position = EmployeePosition::DIRECTOR;
+        position = DIRECTOR;
         break;
     case 6:
-        position = EmployeePosition::ACCOUNTAN;
+        position = ACCOUNTAN;
         break;
     default:
-        position = EmployeePosition::LABORANT;
+        position = LABORANT;
         break;
     }
 }
@@ -115,23 +116,24 @@ void Employee::edit(const App& app) {
         switch (int typeChoice = safeInputInt("New position:\n"
             "1 - Laborant\n2 - Secretary\n3 - Manager\n4 - Engineer\n5 - Director\n6 - Accountan\n"
             "Choice: ");typeChoice) {
+            using enum EmployeePosition;
         case 1:
-            position = EmployeePosition::LABORANT;
+            position = LABORANT;
             break;
         case 2:
-            position = EmployeePosition::SECRETARY;
+            position = SECRETARY;
             break;
         case 3:
-            position = EmployeePosition::MANAGER;
+            position = MANAGER;
             break;
         case 4:
-            position = EmployeePosition::ENGINEER;
+            position = ENGINEER;
             break;
         case 5:
-            position = EmployeePosition::DIRECTOR;
+            position = DIRECTOR;
             break;
         case 6:
-            position = EmployeePosition::ACCOUNTAN;
+            position = ACCOUNTAN;
             break;
         default:
             cout << "Incorrect choice. Position not changed." << endl;
