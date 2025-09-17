@@ -52,8 +52,8 @@ bool Date::isValid() const {
         return false;
     }
 
-    Date currentDate = getCurrentDate();
-    if (year > currentDate.year ||
+    
+    if (Date currentDate = getCurrentDate(); year > currentDate.year ||
         (year == currentDate.year && month > currentDate.month) ||
         (year == currentDate.year && month == currentDate.month && day > currentDate.day)) {
         cout << "Error: the date entered is in the future.\n";
