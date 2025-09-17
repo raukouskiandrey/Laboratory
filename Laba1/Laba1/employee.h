@@ -8,7 +8,7 @@ enum class EmployeePosition {
     MANAGER,
     ENGINEER,
     DIRECTOR,
-    ACCOUNTAN
+    ACCOUNTANT
 };
 
 class App;

@@ -12,17 +12,18 @@ Employee::Employee(int id, float s, Date d, EmployeePosition p)
 
 string employeePositionToString(EmployeePosition position) {
     switch (position) {
-    case EmployeePosition::LABORANT:
+        using enum EmployeePosition;
+    case LABORANT:
         return "Laborant";
-    case EmployeePosition::SECRETARY:
+    case SECRETARY:
         return "Secretary";
-    case EmployeePosition::MANAGER:
+    case MANAGER:
         return "Manager";
-    case EmployeePosition::ENGINEER:
+    case ENGINEER:
         return "Engineer";
-    case EmployeePosition::DIRECTOR:
+    case DIRECTOR:
         return "Director";
-    case EmployeePosition::ACCOUNTAN:
+    case ACCOUNTANT:
         return "Accountan";
     default:
         return "Unknown";
@@ -56,7 +57,7 @@ void Employee::getEmployDataWithoutId() {
         position = DIRECTOR;
         break;
     case 6:
-        position = ACCOUNTAN;
+        position = ACCOUNTANT;
         break;
     default:
         position = LABORANT;
@@ -133,7 +134,7 @@ void Employee::edit(const App& app) {
             position = DIRECTOR;
             break;
         case 6:
-            position = ACCOUNTAN;
+            position = ACCOUNTANT;
             break;
         default:
             cout << "Incorrect choice. Position not changed." << endl;
