@@ -4,12 +4,12 @@
 
 class App {
 private:
-    Employee* employees ;
-    int size ;
-    int capacity ;
+    Employee* employees = nullptr;
+    int size = 0;
+    int capacity = 0;
 
     void resize();
-    void showMenu() const; 
+    void showMenu() const;
     void addEmployee();
     void listEmployees() const;
     void deleteEmployee();
@@ -24,5 +24,5 @@ public:
     ~App();
 
     void run();
-    bool idExists(int id) const; 
+    bool idExists(int id) const;
 };
