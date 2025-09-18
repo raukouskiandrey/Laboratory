@@ -64,37 +64,28 @@ String createString() {
     return newString;
 }
 
-void inputStrings(String& str1, String& str2, const string& operationName) {
-    cout << "=== Operation " << operationName << " ===" << endl;
+void Operation(int operationType) {
+    const char* operationName = (operationType == 0) ? "=" : "+=";
+
+    cout << "Operation: " << operationName << endl;
     cout << "Create first string:" << endl;
-    str1 = createString();
+    String str1 = createString();
 
     cout << "Create second string:" << endl;
-    str2 = createString();
+    String str2 = createString();
 
-    cout << "Before " << operationName << " operation:" << endl;
+    cout << "Before operation:" <<operationName<< endl;
     cout << "String 1: "; print(str1); cout << endl;
     cout << "String 2: "; print(str2); cout << endl;
-}
 
-void demonstrateAssignment() {
-    String str1, str2;
-    inputStrings(str1, str2, "=");
+    if (operationType == 0){
+        str1 = str2;
+    }
+    else {  
+        str1 += str2;
+    }
 
-    str1 = str2;
-
-    cout << "After assignment (str1 = str2):" << endl;
-    cout << "String 1: "; print(str1); cout << endl;
-    cout << "String 2: "; print(str2); cout << endl;
-}
-
-void demonstrateAdditionAssignment() {
-    String str1, str2;
-    inputStrings(str1, str2, "+=");
-
-    str1 += str2;
-
-    cout << "After += operation (str1 += str2):" << endl;
+    cout << "After operation:" <<operationName<< endl;
     cout << "String 1: "; print(str1); cout << endl;
     cout << "String 2: "; print(str2); cout << endl;
 }
@@ -105,10 +96,10 @@ void run() {
         int choice = safeInputInt("Choice: ");
         switch (choice) {
         case 1:
-            demonstrateAssignment();
+            Operation(0);
             break;
         case 2:
-            demonstrateAdditionAssignment();
+            Operation(1);
             break;
         case 3:
             cout << "Exit." << endl;
