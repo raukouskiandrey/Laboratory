@@ -23,41 +23,6 @@ void showMenu() {
 	cout<< "3 - Exit." << endl;
 }
 
-inline void trim_inplace(string& str) {
-    while (!str.empty() && isspace(static_cast<unsigned char>(str.front())))
-        str.erase(str.begin());
-    while (!str.empty() && isspace(static_cast<unsigned char>(str.back())))
-        str.pop_back();
-}
-
-string readLineTrimmed(const string& prompt) {
-    string input;
-    cout << prompt;
-    getline(cin, input);
-    trim_inplace(input);
-    return input;
-}
-
-int safeInputInt(const string& prompt) {
-    regex pat(R"(^[+-]?\d+$)");
-
-    while (true) {
-        string input = readLineTrimmed(prompt);
-
-        if (!input.empty() && regex_match(input, pat)) {
-            try {
-                return stoi(input);
-            }
-            catch (const out_of_range&) {
-                cout << "Number out of int range.Enter again" << endl;
-            }
-        }
-        else {
-            cout << "Invalid input. Enter integer." << endl;
-        }
-    }
-}
-
 String createString() {
     String newString;
     input(newString);
@@ -90,10 +55,12 @@ void Operation(int operationType) {
     cout << "String 2: "; print(str2); cout << endl;
 }
 
+
 void run() {
     while (true) {
         showMenu();
-        int choice = safeInputInt("Choice: ");
+        int choice;
+        cin >> choice;
         switch (choice) {
         case 1:
             Operation(0);
