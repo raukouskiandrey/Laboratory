@@ -23,11 +23,11 @@ void showMenu() {
 	cout<< "3 - Exit." << endl;
 }
 
-inline void trim_inplace(string& s) {
-    while (!s.empty() && isspace(static_cast<unsigned char>(s.front())))
-        s.erase(s.begin());
-    while (!s.empty() && isspace(static_cast<unsigned char>(s.back())))
-        s.pop_back();
+inline void trim_inplace(string& str) {
+    while (!str.empty() && isspace(static_cast<unsigned char>(str.front())))
+        str.erase(str.begin());
+    while (!str.empty() && isspace(static_cast<unsigned char>(str.back())))
+        str.pop_back();
 }
 
 string readLineTrimmed(const string& prompt) {
@@ -64,17 +64,22 @@ String createString() {
     return newString;
 }
 
-void demonstrateAssignment() {
-    cout << "=== Operation = ===" << endl;
+void inputStrings(String& str1, String& str2, const string& operationName) {
+    cout << "=== Operation " << operationName << " ===" << endl;
     cout << "Create first string:" << endl;
-    String str1 = createString();
+    str1 = createString();
 
     cout << "Create second string:" << endl;
-    String str2 = createString();
+    str2 = createString();
 
-    cout << "Before assignment:" << endl;
+    cout << "Before " << operationName << " operation:" << endl;
     cout << "String 1: "; print(str1); cout << endl;
     cout << "String 2: "; print(str2); cout << endl;
+}
+
+void demonstrateAssignment() {
+    String str1, str2;
+    inputStrings(str1, str2, "=");
 
     str1 = str2;
 
@@ -84,16 +89,8 @@ void demonstrateAssignment() {
 }
 
 void demonstrateAdditionAssignment() {
-    cout << "=== Operation += ===" << endl;
-    cout << "Create first string:" << endl;
-    String str1 = createString();
-
-    cout << "Create second string:" << endl;
-    String str2 = createString();
-
-    cout << "Before += operation:" << endl;
-    cout << "String 1: "; print(str1); cout << endl;
-    cout << "String 2: "; print(str2); cout << endl;
+    String str1, str2;
+    inputStrings(str1, str2, "+=");
 
     str1 += str2;
 
