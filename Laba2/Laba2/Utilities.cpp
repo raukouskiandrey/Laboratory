@@ -17,10 +17,10 @@ int myStrlen(const char* str) {
 }
 
 void showMenu() {
-	cout << "Menu: " << endl
-		<< "1 - Perform an operation =" << endl
-		<< "2 - Perform an operation +=" << endl
-		<< "3 - Exit." << endl;
+    cout << "Menu: " << endl;
+    cout << "1 - Perform an operation =" << endl;
+    cout << "2 - Perform an operation +=" << endl;
+	cout<< "3 - Exit." << endl;
 }
 
 inline void trim_inplace(string& s) {
