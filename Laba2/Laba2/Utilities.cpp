@@ -18,8 +18,8 @@ int myStrlen(const char* str) {
 
 void showMenu() {
     cout << "Menu: " << endl;
-    cout << "1 - Perform an operation =" << endl;
-    cout << "2 - Perform an operation +=" << endl;
+    cout << "1 - Assign a value to the first row" << endl;
+    cout << "2 - String addition" << endl;
 	cout<< "3 - Exit." << endl;
 }
 
