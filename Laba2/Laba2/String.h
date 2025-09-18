@@ -3,8 +3,8 @@
 
 class String {
 private:
-	char* string;
 	int length;
+	char* string;
 public:
 
 	String();
