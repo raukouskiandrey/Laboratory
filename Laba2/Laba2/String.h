@@ -3,18 +3,17 @@
 
 class String {
 private:
-	int length;
-	char* string;
+    int length;
+    char* string;
 public:
+    String();
+    String(const char* str);
+    String(const String& other);
+    ~String();
 
-	String();
-	String(const char* str);
-	String(const String& other);
-	~String();
+    String& operator=(const String& other);
+    String& operator+=(const String& other);
 
-	String& operator=(const String &other);
-	String& operator+=(const String& other);
-
-	friend void print(const String&);
-	friend void input(String&);
-};	
+    friend void print(const String&);
+    friend void input(String&);
+};
