@@ -55,12 +55,44 @@ void Operation(int operationType) {
     cout << "String 2: "; print(str2); cout << endl;
 }
 
+int safeInputInt() {
+    char input[10];
+    int value;
+
+    while (true) {
+        cout << "Enter your choice: ";
+        cin.getline(input, 10);
+
+        if (input[0] == '\0') {
+            cout << "Error: Empty input. Please enter a number." << endl;
+            continue;
+        }
+
+        bool isValid = true;
+        for (int i = 0; input[i] != '\0'; i++) {
+            if (!isdigit(input[i])) {
+                isValid = false;
+                break;
+            }
+        }
+
+        if (!isValid) {
+            cout << "Error: Invalid input. Please enter a valid integer number." << endl;
+            continue;
+        }
+        value = 0;
+        for (int i = 0; input[i] != '\0'; i++) {
+            value = value * 10 + (input[i] - '0');
+        }
+
+        return value;
+    }
+}
 
 void run() {
     while (true) {
         showMenu();
-        int choice;
-        cin >> choice;
+        int choice = safeInputInt();
         switch (choice) {
         case 1:
             Operation(0);
