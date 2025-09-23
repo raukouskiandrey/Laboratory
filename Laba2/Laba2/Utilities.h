@@ -7,4 +7,5 @@ void showMenu();
 void run();
 
 String createString();
-void Operation(int operationType);
+void demonstrateAssignment();
+void demonstrateAdditionAssignment();

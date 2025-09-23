@@ -4,23 +4,23 @@
 using namespace std;
 
 int myStrlen(const char* str) {
-	if (str == nullptr) {
-		return 0;
-	}
-	int len = 0;
+    if (str == nullptr) {
+        return 0;
+    }
+    int len = 0;
 
-	for (int ind = 0; str[ind] != '\0'; ind++) {
-		len++;
-	}
+    for (int ind = 0; str[ind] != '\0'; ind++) {
+        len++;
+    }
 
-	return len;
+    return len;
 }
 
 void showMenu() {
     cout << "Menu: " << endl;
     cout << "1 - Assign a value to the first row" << endl;
     cout << "2 - String addition" << endl;
-	cout<< "3 - Exit." << endl;
+    cout << "3 - Exit." << endl;
 }
 
 String createString() {
@@ -39,18 +39,18 @@ void Operation(int operationType) {
     cout << "Create second string:" << endl;
     String str2 = createString();
 
-    cout << "Before operation:" <<operationName<< endl;
+    cout << "Before operation:" << operationName << endl;
     cout << "String 1: "; print(str1); cout << endl;
     cout << "String 2: "; print(str2); cout << endl;
 
-    if (operationType == 0){
+    if (operationType == 0) {
         str1 = str2;
     }
-    else {  
+    else {
         str1 += str2;
     }
 
-    cout << "After operation:" <<operationName<< endl;
+    cout << "After operation:" << operationName << endl;
     cout << "String 1: "; print(str1); cout << endl;
     cout << "String 2: "; print(str2); cout << endl;
 }
@@ -91,8 +91,9 @@ int safeInputInt() {
 
 void run() {
     while (true) {
-        showMenu();
-        switch (int choice = safeInputInt(); choice) {
+        showMenu(); 
+        int choice = safeInputInt();
+        switch (choice) {
         case 1:
             Operation(0);
             break;
@@ -108,4 +109,3 @@ void run() {
         cout << endl;
     }
 }
-

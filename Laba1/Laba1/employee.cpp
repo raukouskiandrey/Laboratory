@@ -1,6 +1,6 @@
 #include "employee.h"
 #include "application.h"
-#include "addition_input.h"
+#include "utilities.h"
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -116,7 +116,7 @@ void Employee::edit(const App& app) {
     case 4: {
         switch (int typeChoice = safeInputInt("New position:\n"
             "1 - Laborant\n2 - Secretary\n3 - Manager\n4 - Engineer\n5 - Director\n6 - Accountan\n"
-            "Choice: ");typeChoice) {
+            "Choice: "); typeChoice) {
             using enum EmployeePosition;
         case 1:
             position = LABORANT;

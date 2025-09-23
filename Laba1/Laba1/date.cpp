@@ -1,5 +1,5 @@
 #include "date.h"
-#include "addition_input.h"
+#include "utilities.h"
 #include <array>
 #include <chrono>
 #include <ctime>
@@ -33,12 +33,12 @@ Date Date::getCurrentDate() {
 
 bool Date::isValid() const {
     if (year < 1) {
-        cout << "Incorrect year"<<endl;
+        cout << "Incorrect year" << endl;
         return false;
     }
 
     if (month < 1 || month > 12) {
-        cout << "There is no such month."<<endl;
+        cout << "There is no such month." << endl;
         return false;
     }
 
@@ -48,11 +48,11 @@ bool Date::isValid() const {
         daysInMonth[1] = 29;
 
     if (day < 1 || day > daysInMonth[month - 1]) {
-        cout << "There is no such day this month."<<endl;
+        cout << "There is no such day this month." << endl;
         return false;
     }
 
-    
+
     if (Date currentDate = getCurrentDate(); year > currentDate.year ||
         (year == currentDate.year && month > currentDate.month) ||
         (year == currentDate.year && month == currentDate.month && day > currentDate.day)) {
@@ -65,7 +65,7 @@ bool Date::isValid() const {
 
 void Date::input() {
     while (true) {
-        cout << "Enter date: "<<endl;
+        cout << "Enter date: " << endl;
         day = safePositiveInputInt("Day: ");
         month = safePositiveInputInt("Month: ");
         year = safePositiveInputInt("Year: ");
@@ -74,7 +74,7 @@ void Date::input() {
             break;
         }
         else {
-            cout << "Try again."<<endl;
+            cout << "Try again." << endl;
         }
     }
 }

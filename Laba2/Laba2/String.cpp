@@ -40,7 +40,7 @@ String& String::operator=(const String& other) {
 
 String& String::operator+=(const String& other) {
 
-	auto newString = new char[length + other.length + 1];
+	char* newString = new char[length + other.length + 1];
 
 	for (int i = 0; i < length; ++i) {
 		newString[i] = string[i];
@@ -75,7 +75,7 @@ void input(String& string) {
     while (cin.get(ch) && ch != '\n') {
         if (length + 1 >= capacity) {
             capacity *= 2;
-            auto newBuffer = new char[capacity];
+            char* newBuffer = new char[capacity];
             for (int i = 0; i < length; i++) {
                 newBuffer[i] = string.string[i];
             }

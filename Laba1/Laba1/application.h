@@ -1,12 +1,12 @@
 #pragma once
 #include "employee.h"
-#include "addition_input.h" 
+#include "utilities.h" 
 
 class App {
 private:
-    Employee* employees = nullptr;
-    int size = 0;
-    int capacity = 0;
+    Employee* employees= nullptr;
+    int size=0;
+    int capacity=0;
 
     void resize();
     void showMenu() const;
