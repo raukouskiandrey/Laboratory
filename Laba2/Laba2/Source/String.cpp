@@ -75,7 +75,7 @@ void input(String& string) {
     while (cin.get(ch) && ch != '\n') {
         if (length + 1 >= capacity) {
             capacity *= 2;
-            char* newBuffer = new char[capacity];
+            auto newBuffer = new char[capacity];
             for (int i = 0; i < length; i++) {
                 newBuffer[i] = string.string[i];
             }
