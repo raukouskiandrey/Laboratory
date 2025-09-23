@@ -1,5 +1,5 @@
 #include "String.h"
-#include "Utilities.h"
+#include "utilities.h"
 using namespace std;
 
 String::String() : length(0), string(new char[1] {'\0'}) {}
