@@ -16,4 +16,4 @@ struct Date {
 private:
     static bool isLeapYear(int y);
     static Date getCurrentDate();
-};
+}; 

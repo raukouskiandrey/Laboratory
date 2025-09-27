@@ -1,12 +1,13 @@
+
 #pragma once
 #include "employee.h"
 #include "utilities.h" 
 
 class App {
 private:
-    Employee* employees= nullptr;
-    int size=0;
-    int capacity=0;
+    Employee* employees = nullptr;
+    int size = 0;
+    int capacity = 0;
 
     void resize();
     void showMenu() const;
@@ -26,3 +27,4 @@ public:
     void run();
     bool idExists(int id) const;
 };
+    #pragma once

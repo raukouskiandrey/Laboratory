@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <ranges>
 #include <regex>
@@ -44,7 +45,8 @@ int safeInputInt(const string& prompt) {
 
 int safePositiveInputInt(const string& prompt) {
     while (true) {
-        if (int number = safeInputInt(prompt); number > 0)
+        int number = safeInputInt(prompt);
+        if ( number > 0)
             return number;
         cout << "The number must be positive." << endl;
     }

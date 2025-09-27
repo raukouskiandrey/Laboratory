@@ -20,17 +20,17 @@ void App::resize() {
 }
 
 void App::showMenu() const {
-    cout << "Menu: "<<endl;
-    cout << "1. Add an employee"<<endl;
-    cout << "2. Delete employee"<<endl;
-    cout << "3. Show all employees"<<endl;
-    cout << "4. Change employee details"<<endl;
+    cout << "Menu: " << endl;
+    cout << "1. Add an employee" << endl;
+    cout << "2. Delete employee" << endl;
+    cout << "3. Show all employees" << endl;
+    cout << "4. Change employee details" << endl;
     cout << "5. Exit" << endl;
 }
 
 void App::addEmployee() {
     Employee e;
-    cout << "Adding an employee: "<<endl;
+    cout << "Adding an employee: " << endl;
 
     int num;
     while (true) {
@@ -46,15 +46,15 @@ void App::addEmployee() {
         resize();
     ++size;
     employees[size - 1] = e;
-    cout << "Employee added."<<endl;
+    cout << "Employee added." << endl;
 }
 
 void App::listEmployees() const {
     if (size == 0) {
-        cout << "The list is empty."<<endl;
+        cout << "The list is empty." << endl;
         return;
     }
-    cout << "List of employees"<<endl;
+    cout << "List of employees" << endl;
     for (int i = 0; i < size; ++i) {
         cout << "\n#" << (i + 1) << "\n";
         employees[i].putEmploy();
@@ -71,30 +71,30 @@ int App::findById(int id) const {
 
 void App::deleteEmployee() {
     if (size == 0) {
-        cout << "There is nothing to delete, the list is empty."<<endl;
+        cout << "There is nothing to delete, the list is empty." << endl;
         return;
     }
     int id = safePositiveInputInt("Enter the employee number to delete: ");
     int idx = findById(id);
     if (idx == -1) {
-        cout << "An employee with this number was not found."<<endl;
+        cout << "An employee with this number was not found." << endl;
         return;
     }
     for (int i = idx; i < size - 1; ++i)
         employees[i] = employees[i + 1];
     --size;
-    cout << "Employee delete."<<endl;
+    cout << "Employee delete." << endl;
 }
 
 void App::editEmployee() {
     if (size == 0) {
-        cout << "There is nothing to edit, the list is empty."<<endl;
+        cout << "There is nothing to edit, the list is empty." << endl;
         return;
     }
     int id = safePositiveInputInt("Enter employee number to edit: ");
     int idx = findById(id);
     if (idx == -1) {
-        cout << "An employee with this number was not found."<<endl;
+        cout << "An employee with this number was not found." << endl;
         return;
     }
     employees[idx].edit(*this);
@@ -118,10 +118,10 @@ void App::run() {
             editEmployee();
             break;
         case 5:
-            cout << "Exit."<< endl;
+            cout << "Exit." << endl;
             return;
         default:
-            cout << "Invalid menu item. "<<endl;
+            cout << "Invalid menu item. " << endl;
         }
     }
 }
