@@ -97,8 +97,7 @@ int safeInputInt() {
 void run() {
     while (true) {
         showMenu();
-        int choice = safeInputInt();
-        switch (choice) {
+        switch (int choice = safeInputInt();choice) {
         case 1:
             Operation(0);
             break;
