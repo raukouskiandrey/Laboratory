@@ -1,4 +1,3 @@
-
 cmake_minimum_required(VERSION 3.10.0)
 project(lab1 VERSION 0.1.0 LANGUAGES C CXX)
 
@@ -13,10 +12,10 @@ set(SOURCES
 )
 
 set(HEADERS
-    header/application.hpp
-    header/date.hpp
-    header/employee.hpp
-    header/utilities.hpp
+    include/application.hpp  
+    include/date.hpp         
+    include/employee.hpp     
+    include/utilities.hpp    
 )
 
 add_executable(lab1 ${SOURCES} ${HEADERS})
