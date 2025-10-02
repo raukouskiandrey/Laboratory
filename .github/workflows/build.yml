@@ -22,14 +22,23 @@ jobs:
       - name: Install Build Wrapper
         uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v4
 
-      - name: Build (Название папки с лабой в вашем проекте)
-        run: |
-          rm -rf (Название папки с лабой в вашем проекте)/build
-          mkdir (Название папки с лабой в вашем проекте)/build
-          cmake -S (Название папки с лабой в вашем проекте) -B (Название папки с лабой в вашем проекте)/build 
-          build-wrapper-linux-x86-64 --out-dir (Название папки с лабой в вашем проекте)/build_wrapper cmake --build (Название папки с лабой в вашем проекте)/build --config Release
 
- - name: SonarCloud scan (Название папки с лабой в вашем проекте)
+
+
+      
+
+      - name: Build lab1
+        run: |
+          rm -rf lab1/build
+          mkdir lab1/build
+          cmake -S lab1 -B lab1/build 
+          build-wrapper-linux-x86-64 --out-dir lab1/build_wrapper cmake --build lab1/build --config Release
+
+
+      
+
+
+      - name: SonarCloud scan lab1
         uses: SonarSource/sonarqube-scan-action@v4
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -37,7 +46,8 @@ jobs:
           args: >
             -Dsonar.projectKey=raukouskiandrey_Laboratory_lab1
             -Dsonar.organization=${{ env.SONAR_ORG }}
-            -Dsonar.sources=(Название папки с лабой в вашем проекте)
-            -Dsonar.cfamily.compile-commands=(Название папки с лабой в вашем проекте)/build_wrapper/compile_commands.json
+            -Dsonar.sources=lab1
+            -Dsonar.cfamily.compile-commands=lab1/build_wrapper/compile_commands.json
             -Dsonar.coverage.exclusions=**
+            -Dsonar.inclusions=lab1/src/**,lab1/header/** 
             -Dsonar.cfamily.skipCoverage=true
