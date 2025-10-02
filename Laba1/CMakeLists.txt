@@ -1,12 +1,12 @@
-cmake_minimum_required(VERSION 3.10.0)
-project(lab1 VERSION 0.1.0 LANGUAGES C CXX)
+cmake_minimum_required(VERSION 3.10)
+project(lab1)
 
-include_directories(include)
+# ИСПРАВЛЕНО: указываем папку header вместо include
+include_directories(header)
 
-# Просто перечисляем все cpp файлы
-add_executable(lab1 
+add_executable(lab1
     src/application.cpp
-    src/date.cpp  
+    src/date.cpp
     src/employee.cpp
     src/main.cpp
     src/utilities.cpp
