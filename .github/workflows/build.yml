@@ -1,0 +1,67 @@
+name: Build & SonarCloud
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+    env:
+      SONAR_ORG: raukouskiandrey
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Build Wrapper
+        uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v4
+
+      # Laba1
+      - name: Build Laba1
+        run: |
+          rm -rf Laba1/build
+          mkdir Laba1/build
+          cmake -S Laba1 -B Laba1/build
+          build-wrapper-linux-x86-64 --out-dir Laba1/build_wrapper cmake --build Laba1/build --config Release
+
+      - name: SonarCloud scan Laba1
+        uses: SonarSource/sonarqube-scan-action@v4
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=raukouskiandrey_Laba1
+            -Dsonar.organization=${{ env.SONAR_ORG }}
+            -Dsonar.sources=Laba1
+            -Dsonar.inclusions=Laba1/src/**,Laba1/header/**
+            -Dsonar.cfamily.compile-commands=Laba1/build_wrapper/compile_commands.json
+            -Dsonar.coverage.exclusions=**
+            -Dsonar.cfamily.skipCoverage=true
+
+      # Laba2
+      - name: Build Laba2
+        run: |
+          rm -rf Laba2/build
+          mkdir Laba2/build
+          cmake -S Laba2 -B Laba2/build
+          build-wrapper-linux-x86-64 --out-dir Laba2/build_wrapper cmake --build Laba2/build --config Release
+
+      - name: SonarCloud scan Laba2
+        uses: SonarSource/sonarqube-scan-action@v4
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=raukouskiandrey_Laba2
+            -Dsonar.organization=${{ env.SONAR_ORG }}
+            -Dsonar.sources=Laba2
+            -Dsonar.inclusions=Laba2/src/**,Laba2/header/**
+            -Dsonar.cfamily.compile-commands=Laba2/build_wrapper/compile_commands.json
+            -Dsonar.coverage.exclusions=**
+            -Dsonar.cfamily.skipCoverage=true
