@@ -1,0 +1,43 @@
+name: Build & SonarCloud
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+    env:
+      SONAR_ORG: raukouskiandrey
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Build Wrapper
+        uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v4
+
+      - name: Build (Название папки с лабой в вашем проекте)
+        run: |
+          rm -rf (Название папки с лабой в вашем проекте)/build
+          mkdir (Название папки с лабой в вашем проекте)/build
+          cmake -S (Название папки с лабой в вашем проекте) -B (Название папки с лабой в вашем проекте)/build 
+          build-wrapper-linux-x86-64 --out-dir (Название папки с лабой в вашем проекте)/build_wrapper cmake --build (Название папки с лабой в вашем проекте)/build --config Release
+
+ - name: SonarCloud scan (Название папки с лабой в вашем проекте)
+        uses: SonarSource/sonarqube-scan-action@v4
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=raukouskiandrey_Laboratory_lab1
+            -Dsonar.organization=${{ env.SONAR_ORG }}
+            -Dsonar.sources=(Название папки с лабой в вашем проекте)
+            -Dsonar.cfamily.compile-commands=(Название папки с лабой в вашем проекте)/build_wrapper/compile_commands.json
+            -Dsonar.coverage.exclusions=**
+            -Dsonar.cfamily.skipCoverage=true
