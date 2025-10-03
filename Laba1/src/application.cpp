@@ -24,7 +24,7 @@ void App::showMenu() const {
     cout << "1. Add an employee " << endl;
     cout << "2. Delete employee " << endl;
     cout << "3. Show all employees " << endl;
-    cout << "4. Exit" << endl;
+    cout << "4. Exit " << endl;
 }
 
 void App::addEmployee() {
