@@ -1,4 +1,3 @@
-
 #pragma once
 #include "employee.h"
 #include "utilities.h" 
@@ -14,7 +13,6 @@ private:
     void addEmployee();
     void listEmployees() const;
     void deleteEmployee();
-    void editEmployee();
 
     int findById(int id) const;
 
@@ -27,4 +25,3 @@ public:
     void run();
     bool idExists(int id) const;
 };
-    #pragma once

@@ -21,11 +21,10 @@ void App::resize() {
 
 void App::showMenu() const {
     cout << "Menu: " << endl;
-    cout << "1. Add an employee" << endl;
-    cout << "2. Delete employee" << endl;
-    cout << "3. Show all employees" << endl;
-    cout << "4. Change employee details" << endl;
-    cout << "5. Exit" << endl;
+    cout << "1. Add an employee " << endl;
+    cout << "2. Delete employee " << endl;
+    cout << "3. Show all employees " << endl;
+    cout << "4. Exit" << endl;
 }
 
 void App::addEmployee() {
@@ -86,20 +85,6 @@ void App::deleteEmployee() {
     cout << "Employee delete." << endl;
 }
 
-void App::editEmployee() {
-    if (size == 0) {
-        cout << "There is nothing to edit, the list is empty." << endl;
-        return;
-    }
-    int id = safePositiveInputInt("Enter employee number to edit: ");
-    int idx = findById(id);
-    if (idx == -1) {
-        cout << "An employee with this number was not found." << endl;
-        return;
-    }
-    employees[idx].edit(*this);
-}
-
 void App::run() {
     while (true) {
         showMenu();
@@ -115,9 +100,6 @@ void App::run() {
             listEmployees();
             break;
         case 4:
-            editEmployee();
-            break;
-        case 5:
             cout << "Exit." << endl;
             return;
         default:

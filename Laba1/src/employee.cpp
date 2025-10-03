@@ -1,4 +1,3 @@
-
 #include "employee.h"
 #include "application.h"
 #include "utilities.h"
@@ -81,71 +80,4 @@ int Employee::getId() const {
 
 void Employee::setId(int id) {
     employeeId = id;
-}
-
-void Employee::edit(const App& app) {
-    cout << endl << "Editing an employee (number: " << employeeId << ")" << endl;
-    cout << "1. Change number" << endl;
-    cout << "2. Change salary" << endl;
-    cout << "3. Change the hire date" << endl;
-    cout << "4. Change position" << endl;
-    cout << "5. Cancel" << endl;
-
-    int choice = safeInputInt("Choice: ");
-    switch (choice) {
-    case 1: {
-        int newId;
-        while (true) {
-            newId = safePositiveInputInt("New number: ");
-            if (newId == employeeId || !app.idExists(newId))
-                break;
-            cout << "Error: number " << newId << " already taken. Enter another one." << endl;
-        }
-        employeeId = newId;
-        cout << "Ready." << endl;
-        break;
-    }
-    case 2:
-        salary = safePositiveInputFloat("New salary: ");
-        cout << "Ready." << endl;
-        break;
-    case 3:
-        cout << "New date:" << endl;
-        hireDate.input();
-        cout << "Ready." << endl;
-        break;
-    case 4: {
-        switch (int typeChoice = safeInputInt("New position:\n"
-            "1 - Laborant\n2 - Secretary\n3 - Manager\n4 - Engineer\n5 - Director\n6 - Accountan\n"
-            "Choice: "); typeChoice) {
-            using enum EmployeePosition;
-        case 1:
-            position = LABORANT;
-            break;
-        case 2:
-            position = SECRETARY;
-            break;
-        case 3:
-            position = MANAGER;
-            break;
-        case 4:
-            position = ENGINEER;
-            break;
-        case 5:
-            position = DIRECTOR;
-            break;
-        case 6:
-            position = ACCOUNTANT;
-            break;
-        default:
-            cout << "Incorrect choice. Position not changed." << endl;
-            break;
-        }
-        cout << "Ready." << endl;
-        break;
-    }
-    default:
-        cout << "Cancel." << endl;
-        break;
-    }
 }
