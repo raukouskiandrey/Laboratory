@@ -71,7 +71,7 @@ void Entrepreneur::AddTaxPayment(string_view date, float amount) {
 
 void Entrepreneur::resizeTaxArray() {
     int newCapacity = (capacity == 0) ? 3 : capacity * 2;
-    taxPayment* newTax = new taxPayment[newCapacity];
+    auto newTax = new taxPayment[newCapacity];
 
     if (tax != nullptr && size > 0) {
         for (int i = 0; i < size; i++) {
