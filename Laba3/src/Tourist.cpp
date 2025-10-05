@@ -37,9 +37,9 @@ string Tourist::getPassportData() { return passportData; };
 int Tourist::getSize() const { return size; }
 int Tourist::getCapacity() const { return capacity; }
 
-void Tourist::setPassportData(string pasData) { passportData = pasData; };
+void Tourist::setPassportData(string_view pasData) { passportData = pasData; };
 
-void Tourist::editBorderCross(int index, const string& date, const string& country) {
+void Tourist::editBorderCross(int index, string_view date, string_view country) {
     if (index >= 0 && index < size) {
         borderCross[index].crossingDate = date;
         borderCross[index].country = country;
@@ -54,7 +54,7 @@ borderCrossing Tourist::getBorderCross(int index) const {
 }
 
 
-void Tourist::AddBorderCross(const string& date, string country) {
+void Tourist::AddBorderCross(string_view date, string_view country) {
     if (size >= capacity) {
         resizeBorderArray();
     }

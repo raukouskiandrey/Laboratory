@@ -43,8 +43,7 @@ int safeInputInt(const string& prompt) {
 
 int safePositiveInputInt(const string& prompt) {
     while (true) {
-        int number = safeInputInt(prompt);
-        if (number > 0)
+        if (int number = safeInputInt(prompt);number > 0)
             return number;
         cout << "The number must be positive." << endl;
     }
@@ -57,7 +56,7 @@ float safeInputFloat(const string& prompt) {
         string input = readLineTrimmed(prompt);
 
         if (!input.empty() && regex_match(input, pat)) {
-            replace(input.begin(), input.end(), ',', '.');
+            ranges::replace(input.begin(), input.end(), ',', '.');
 
             stringstream ss(input);
             ss.imbue(locale::classic());
@@ -79,8 +78,7 @@ float safeInputFloat(const string& prompt) {
 
 float safePositiveInputFloat(const string& prompt) {
     while (true) {
-        float number = safeInputFloat(prompt);
-        if (number > 0.0f)
+        if (float number = safeInputFloat(prompt);number > 0.0f)
             return number;
 
         cout << "The number must be positive." << endl;

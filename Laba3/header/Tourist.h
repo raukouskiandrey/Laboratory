@@ -11,10 +11,10 @@ struct borderCrossing {
 class Tourist : public Human {
 private:
     string passportData;
+    borderCrossing* borderCross;
     int size;
     int capacity;
-    borderCrossing* borderCross;
-
+   
 public:
     Tourist();
     Tourist(const Tourist& other);
@@ -25,12 +25,12 @@ public:
     int getSize() const;
     int getCapacity() const;
 
-    void setPassportData(string pasData);
+    void setPassportData(string_view pasData);
 
-    void editBorderCross(int index, const string& date, const string& country);
+    void editBorderCross(int index, string_view date, string_view country);
     borderCrossing getBorderCross(int index) const;
 
-    void AddBorderCross(const string& date, string country);
+    void AddBorderCross(string_view date, string_view country);
     void removeBorderCross(int index);
     void resizeBorderArray();
     void displayTourist();
