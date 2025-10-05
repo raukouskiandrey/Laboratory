@@ -33,7 +33,7 @@ Tourist::~Tourist() {
     delete[] borderCross;
 }
 
-string Tourist::getPassportData() { return passportData; };
+string Tourist::getPassportData() const { return passportData; };
 int Tourist::getSize() const { return size; }
 int Tourist::getCapacity() const { return capacity; }
 

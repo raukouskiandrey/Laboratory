@@ -16,16 +16,16 @@ public:
 
     Human& operator=(const Human& other);
 
-    string getName();
-    string getSurname();
-    string getPatronymic();
-    int getBirthYear();
+    string getName() const;
+    string getSurname() const;
+    string getPatronymic() const ;
+    int getBirthYear() const ;
 
     void setName(string_view n);
     void setSurname(string_view sn);
     void setPatronymic(string_view p);
     void setBirthYear(const int& by);
 
-    void displayHuman();
+    void displayHuman() const;
     void inputHuman();
 };

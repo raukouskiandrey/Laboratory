@@ -21,7 +21,7 @@ public:
     Tourist& operator=(const Tourist& other);
     ~Tourist();
 
-    string getPassportData();
+    string getPassportData() const;
     int getSize() const;
     int getCapacity() const;
 

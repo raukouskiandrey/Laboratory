@@ -18,17 +18,17 @@ Human& Human::operator=(const Human& other) {
     return *this;
 }
 
-string Human::getName() { return name; }
-string Human::getSurname() { return surname; }
-string Human::getPatronymic() { return patronymic; }
-int Human::getBirthYear() { return birthYear; }
+string Human::getName() const { return name; }
+string Human::getSurname() const { return surname; }
+string Human::getPatronymic() const { return patronymic; }
+int Human::getBirthYear() const { return birthYear; }
 
 void Human::setName(string_view n) { name = n; }
 void Human::setSurname(string_view sn) { surname = sn; }
 void Human::setPatronymic(string_view p) { patronymic = p; }
 void Human::setBirthYear(const int& by) { birthYear = by; }
 
-void Human::displayHuman() {
+void Human::displayHuman() const {
     cout << "Name: " << name << endl << "Surname: " << surname << endl << "Patronymic: " << patronymic << endl << "Year of birth: " << birthYear << endl;
 }
 
