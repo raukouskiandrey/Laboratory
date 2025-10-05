@@ -1,13 +1,13 @@
-    #pragma once
+#pragma once
 #include <string>
 using namespace std;
 
 class Human {
 private:
-    string name;
-    string surname;
-    string patronymic;
-    int birthYear;
+    string name = "Fyodor";
+    string surname = "Konyukhov";
+    string patronymic = "Filippovich";
+    int birthYear = 1951;
 
 public:
     Human();
@@ -18,8 +18,8 @@ public:
 
     string getName() const;
     string getSurname() const;
-    string getPatronymic() const ;
-    int getBirthYear() const ;
+    string getPatronymic() const;
+    int getBirthYear() const;
 
     void setName(string_view n);
     void setSurname(string_view sn);

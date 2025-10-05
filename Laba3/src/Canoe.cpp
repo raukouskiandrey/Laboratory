@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-Canoe::Canoe() : shopAddress(nullptr), shopSize(0), shopCapacity(3) {
+Canoe::Canoe() {
     shopAddress = new string[shopCapacity];
 }
 

@@ -6,9 +6,9 @@ using namespace std;
 
 class Canoe : public Entrepreneur, public Tourist {
 private:
-    string* shopAddress;
-    int shopSize;
-    int shopCapacity;
+    string* shopAddress = nullptr;
+    int shopSize = 0;
+    int shopCapacity = 3;
 
     void editEntrepreneurName();
     void editEntrepreneurSurname();
@@ -51,5 +51,5 @@ public:
     void resizeShopArray();
     void displayCanoe();
     void inputCanoe();
-    void edit(int number); 
+    void edit(int number);
 };

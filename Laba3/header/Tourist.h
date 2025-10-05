@@ -10,11 +10,11 @@ struct borderCrossing {
 
 class Tourist : public Human {
 private:
-    string passportData;
-    borderCrossing* borderCross;
-    int size;
-    int capacity;
-   
+    string passportData = "8545199";
+    borderCrossing* borderCross = nullptr;
+    int size = 0;
+    int capacity = 3;
+
 public:
     Tourist();
     Tourist(const Tourist& other);

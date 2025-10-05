@@ -1,4 +1,4 @@
-    #pragma once
+#pragma once
 #include "Human.h"
 #include <string>
 using namespace std;
@@ -10,13 +10,13 @@ struct taxPayment {
 
 class Entrepreneur : public Human {
 private:
-    int licenseNumber;
-    string regAddress;
-    int taxID;
-    taxPayment* tax;
-    int size;
-    int capacity;
-    
+    int licenseNumber = 1;
+    string regAddress = "Minsk";
+    int taxID = 1;
+    taxPayment* tax = nullptr;
+    int size = 0;
+    int capacity = 3;
+
 
 public:
     Entrepreneur();
@@ -40,6 +40,6 @@ public:
     void AddTaxPayment(string_view date, float amount);
     void removeTaxPayment(int index);
     void resizeTaxArray();
-    void displayEntrepreneur();
+    void displayEntrepreneur() const;
     void inputEntrepreneur();
 };

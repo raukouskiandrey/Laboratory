@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-Entrepreneur::Entrepreneur() : licenseNumber(1), regAddress("Minsk"), taxID(1), tax(nullptr),size(0),capacity(3)   {
+Entrepreneur::Entrepreneur() {
     tax = new taxPayment[capacity];
 }
 
@@ -84,7 +84,7 @@ void Entrepreneur::resizeTaxArray() {
     capacity = newCapacity;
 }
 
-void Entrepreneur::displayEntrepreneur() {
+void Entrepreneur::displayEntrepreneur() const {
     cout << "\n Entrepreneur information " << endl;
     displayHuman();
     cout << "License number: " << licenseNumber << endl

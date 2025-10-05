@@ -2,10 +2,9 @@
 #include <iostream>
 using namespace std;
 
-Tourist::Tourist() : passportData("8545199"), borderCross(nullptr), size(0), capacity(3) {
+Tourist::Tourist() {
     borderCross = new borderCrossing[capacity];
 }
-
 Tourist::Tourist(const Tourist& other) : Human(other), passportData(other.passportData), size(other.size), capacity(other.capacity) {
     borderCross = new borderCrossing[capacity];
     for (int i = 0; i < size; i++) {

@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Human::Human() : name("Fyodor"), surname("Konyukhov"), patronymic("Filippovich"), birthYear(1951) {}
+Human::Human() = default;
 
 Human::Human(string n, string sn, string p, int by) : name(n), surname(sn), patronymic(p), birthYear(by) {}
 
