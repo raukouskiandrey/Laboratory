@@ -8,4 +8,4 @@
 3)«Челнок» (производный от 2 и 3) – добавляется массив строк – список адресов, по которым покупается товар
 Классы должны содержать методы доступа и изменения всех полей.
  
-### Ссылка на результат SonarQube Cloud [тут](https://sonarcloud.io/summary/new_code?id=raukouskiandrey_Laboratory&
+### Ссылка на результат SonarQube Cloud [тут](https://sonarcloud.io/summary/new_code?id=raukouskiandrey_Laboratory&branch=main)
