@@ -11,7 +11,7 @@ private:
 
 public:
     Human();
-    Human(string n, string sn, string p, int by);
+    Human(const string& n, const string& sn, const string& p, int by);
     Human(const Human& other);
 
     Human& operator=(const Human& other);
