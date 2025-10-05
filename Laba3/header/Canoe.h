@@ -49,7 +49,7 @@ public:
 
     void AddShopAddress(string_view Address);
     void resizeShopArray();
-    void displayCanoe();
+    void displayCanoe() const;
     void inputCanoe();
     void edit(int number);
 };

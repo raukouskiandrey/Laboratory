@@ -56,7 +56,7 @@ void Canoe::resizeShopArray() {
     shopAddress = newShopAddress;
 }
 
-void Canoe::displayCanoe() {
+void Canoe::displayCanoe() const {
     displayEntrepreneur();
     displayTourist();
 
