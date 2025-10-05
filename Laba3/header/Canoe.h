@@ -2,7 +2,6 @@
 #include "Entrepreneur.h"
 #include "Tourist.h"
 #include <string>
-using namespace std;
 
 class Canoe : public Entrepreneur, public Tourist {
 private:
