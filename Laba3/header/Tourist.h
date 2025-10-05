@@ -33,6 +33,6 @@ public:
     void AddBorderCross(string_view date, string_view country);
     void removeBorderCross(int index);
     void resizeBorderArray();
-    void displayTourist();
+    void displayTourist() const;
     void inputTourist();
 };

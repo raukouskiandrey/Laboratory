@@ -77,7 +77,7 @@ void Tourist::resizeBorderArray() {
     capacity = newCapacity;
 }
 
-void Tourist::displayTourist() {
+void Tourist::displayTourist() const{
     cout << "\nTourist information " << endl;
     displayHuman();
     cout << "Passport data: " << passportData << endl;
