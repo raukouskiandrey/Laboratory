@@ -1,7 +1,6 @@
 #pragma once
 #include "Human.h"
 #include <string>
-using namespace std;
 
 struct borderCrossing {
     string crossingDate;
