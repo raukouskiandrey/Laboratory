@@ -48,7 +48,7 @@ void Canoe::AddShopAddress(string_view Address) {
 
 void Canoe::resizeShopArray() {
     shopCapacity = (shopCapacity == 0) ? 3 : shopCapacity * 2;
-    string* newShopAddress = new string[shopCapacity];
+    auto newShopAddress = new string[shopCapacity];
     for (int i = 0; i < shopSize; i++) {
         newShopAddress[i] = shopAddress[i];
     }

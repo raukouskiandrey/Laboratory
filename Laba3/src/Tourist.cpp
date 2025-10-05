@@ -65,7 +65,7 @@ void Tourist::AddBorderCross(string_view date, string_view country) {
 
 void Tourist::resizeBorderArray() {
     int newCapacity = (capacity == 0) ? 3 : capacity * 2;
-    borderCrossing* newBorderCross = new borderCrossing[newCapacity];
+    auto newBorderCross = new borderCrossing[newCapacity];
 
     if (borderCross != nullptr && size > 0) {
         for (int i = 0; i < size; i++) {
