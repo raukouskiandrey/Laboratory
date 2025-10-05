@@ -56,7 +56,7 @@ float safeInputFloat(const string& prompt) {
         string input = readLineTrimmed(prompt);
 
         if (!input.empty() && regex_match(input, pat)) {
-            ranges::replace(input.begin(), input.end(), ',', '.');
+            ranges::replace(input, ',', '.');
 
             stringstream ss(input);
             ss.imbue(locale::classic());
@@ -66,7 +66,7 @@ float safeInputFloat(const string& prompt) {
             if (ss && ss.eof()) {
                 return value;
             }
-            else {
+            else { 
                 cout << "Invalid input. Enter number." << endl;
             }
         }
