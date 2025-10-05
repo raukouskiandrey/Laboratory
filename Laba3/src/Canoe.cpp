@@ -38,11 +38,11 @@ Canoe::~Canoe() {
 int Canoe::getShopSize() const { return shopSize; }
 int Canoe::getShopCapacity() const { return shopCapacity; }
 
-void Canoe::AddShopAddress(const string& Address) {
+void Canoe::AddShopAddress(string_view Address) {
     if (shopSize >= shopCapacity) {
         resizeShopArray();
     }
-    shopAddress[shopSize] = Address;
+    shopAddress[shopSize] = string(Address);
     shopSize++;
 }
 
@@ -196,8 +196,7 @@ void Canoe::editEntrepreneurTaxPaymentDelete() {
 
 void Canoe::editEntrepreneurTaxPayments() {
     while (true) {
-        int taxSize = Entrepreneur::getSize();
-        if (taxSize > 0) {
+        if (int taxSize = Entrepreneur::getSize();taxSize > 0) {
             cout << "Existing tax payments:" << endl;
             for (int i = 0; i < taxSize; i++) {
                 taxPayment payment = Entrepreneur::getTaxPayment(i);
@@ -327,7 +326,8 @@ void Canoe::editTouristBorderCrossingEdit() {
 
     int crossingNum = safeInputInt("Enter crossing number to edit: ");
     if (crossingNum > 0 && crossingNum <= borderSize) {
-        string date, country;
+        string date;
+        string country;
         cout << "Enter new date: ";
         cin.ignore();
         getline(cin, date);
@@ -343,7 +343,8 @@ void Canoe::editTouristBorderCrossingEdit() {
 }
 
 void Canoe::editTouristBorderCrossingAdd() {
-    string date, country;
+    string date;
+    string country;
     cout << "Enter crossing date: ";
     cin.ignore();
     getline(cin, date);
@@ -371,8 +372,7 @@ void Canoe::editTouristBorderCrossingDelete() {
 }
 
 void Canoe::editTouristBorderCrossings() {
-    int borderSize = Tourist::getSize();
-    if (borderSize > 0) {
+    if (int borderSize = Tourist::getSize();borderSize > 0) {
         cout << "Existing border crossings:" << endl;
         for (int i = 0; i < borderSize; i++) {
             borderCrossing crossing = Tourist::getBorderCross(i);

@@ -47,7 +47,7 @@ public:
     int getShopSize() const;
     int getShopCapacity() const;
 
-    void AddShopAddress(const string& Address);
+    void AddShopAddress(string_view Address);
     void resizeShopArray();
     void displayCanoe();
     void inputCanoe();
