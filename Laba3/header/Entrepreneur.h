@@ -31,13 +31,13 @@ public:
     int getCapacity() const;
 
     void setLicenseNumber(int lnumb);
-    void setRegAddress(string regadd);
+    void setRegAddress(string_view regadd);
     void setTaxID(int taxid);
 
-    void editTaxPayment(int index, const string& date, float amount);
+    void editTaxPayment(int index, string_view date, float amount);
     taxPayment getTaxPayment(int index) const;
 
-    void AddTaxPayment(const string& date, float amount);
+    void AddTaxPayment(string_view date, float amount);
     void removeTaxPayment(int index);
     void resizeTaxArray();
     void displayEntrepreneur();

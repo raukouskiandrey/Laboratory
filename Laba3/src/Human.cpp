@@ -23,9 +23,9 @@ string Human::getSurname() { return surname; }
 string Human::getPatronymic() { return patronymic; }
 int Human::getBirthYear() { return birthYear; }
 
-void Human::setName(const string& n) { name = n; }
-void Human::setSurname(const string& sn) { surname = sn; }
-void Human::setPatronymic(const string& p) { patronymic = p; }
+void Human::setName(string_view n) { name = n; }
+void Human::setSurname(string_view sn) { surname = sn; }
+void Human::setPatronymic(string_view p) { patronymic = p; }
 void Human::setBirthYear(const int& by) { birthYear = by; }
 
 void Human::displayHuman() {

@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-Entrepreneur::Entrepreneur() : licenseNumber(1), regAddress("Minsk"), taxID(1), tax(nullptr),size(0),  capacity(3)   {
+Entrepreneur::Entrepreneur() : licenseNumber(1), regAddress("Minsk"), taxID(1), tax(nullptr),size(0),capacity(3)   {
     tax = new taxPayment[capacity];
 }
 
@@ -43,10 +43,10 @@ int Entrepreneur::getSize() const { return size; }
 int Entrepreneur::getCapacity() const { return capacity; }
 
 void Entrepreneur::setLicenseNumber(int lnumb) { licenseNumber = lnumb; }
-void Entrepreneur::setRegAddress(string regadd) { regAddress = regadd; }
+void Entrepreneur::setRegAddress(string_view regadd) { regAddress = regadd; }
 void Entrepreneur::setTaxID(int taxid) { taxID = taxid; }
 
-void Entrepreneur::editTaxPayment(int index, const string& date, float amount) {
+void Entrepreneur::editTaxPayment(int index, string_view date, float amount) {
     if (index >= 0 && index < size) {
         tax[index].taxDate = date;
         tax[index].taxAmount = amount;
@@ -60,7 +60,7 @@ taxPayment Entrepreneur::getTaxPayment(int index) const {
     return taxPayment();
 }
 
-void Entrepreneur::AddTaxPayment(const string& date, float amount) {
+void Entrepreneur::AddTaxPayment(string_view date, float amount) {
     if (size >= capacity) {
         resizeTaxArray();
     }

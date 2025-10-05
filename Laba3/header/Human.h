@@ -21,9 +21,9 @@ public:
     string getPatronymic();
     int getBirthYear();
 
-    void setName(const string& n);
-    void setSurname(const string& sn);
-    void setPatronymic(const string& p);
+    void setName(string_view n);
+    void setSurname(string_view sn);
+    void setPatronymic(string_view p);
     void setBirthYear(const int& by);
 
     void displayHuman();
