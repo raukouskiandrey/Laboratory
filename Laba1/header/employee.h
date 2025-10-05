@@ -28,4 +28,5 @@ public:
     void putEmploy() const;
     int getId() const;
     void setId(int id);
+    void edit(const App& app);
 };
