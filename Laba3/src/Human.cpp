@@ -23,10 +23,10 @@ string Human::getSurname() { return surname; }
 string Human::getPatronymic() { return patronymic; }
 int Human::getBirthYear() { return birthYear; }
 
-void Human::setName(string& n) { name = n; }
-void Human::setSurname(string& sn) { surname = sn; }
-void Human::setPatronymic(string& p) { patronymic = p; }
-void Human::setBirthYear(int& by) { birthYear = by; }
+void Human::setName(const string& n) { name = n; }
+void Human::setSurname(const string& sn) { surname = sn; }
+void Human::setPatronymic(const string& p) { patronymic = p; }
+void Human::setBirthYear(const int& by) { birthYear = by; }
 
 void Human::displayHuman() {
     cout << "Name: " << name << endl << "Surname: " << surname << endl << "Patronymic: " << patronymic << endl << "Year of birth: " << birthYear << endl;

@@ -1,4 +1,4 @@
-#pragma once
+    #pragma once
 #include <string>
 using namespace std;
 
@@ -21,10 +21,10 @@ public:
     string getPatronymic();
     int getBirthYear();
 
-    void setName(string& n);
-    void setSurname(string& sn);
-    void setPatronymic(string& p);
-    void setBirthYear(int& by);
+    void setName(const string& n);
+    void setSurname(const string& sn);
+    void setPatronymic(const string& p);
+    void setBirthYear(const int& by);
 
     void displayHuman();
     void inputHuman();

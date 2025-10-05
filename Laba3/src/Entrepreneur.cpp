@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-Entrepreneur::Entrepreneur() : licenseNumber(1), regAddress("Minsk"), taxID(1), tax(nullptr), size(0), capacity(3) {
+Entrepreneur::Entrepreneur() : licenseNumber(1), regAddress("Minsk"), taxID(1), tax(nullptr),  capacity(3),size(0)   {
     tax = new taxPayment[capacity];
 }
 
