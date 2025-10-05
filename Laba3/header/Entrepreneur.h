@@ -13,9 +13,10 @@ private:
     int licenseNumber;
     string regAddress;
     int taxID;
+    taxPayment* tax;
     int size;
     int capacity;
-    taxPayment* tax;
+    
 
 public:
     Entrepreneur();
