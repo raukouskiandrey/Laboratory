@@ -58,7 +58,7 @@ float safeInputFloat(const string& prompt) {
         string input = readLineTrimmed(prompt);
 
         if (!input.empty() && regex_match(input, pat)) {
-            ranges::replace(input, ',', '.');
+            std::ranges::replace(input, ',', '.');
 
             stringstream ss(input);
             ss.imbue(locale::classic());
