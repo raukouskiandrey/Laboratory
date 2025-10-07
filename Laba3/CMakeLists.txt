@@ -8,7 +8,7 @@ include_directories(header)
 
 set(SOURCES
     src/main.cpp
-    srcHuman.cpp
+    src/Human.cpp
     src/Entrepreneur.cpp
     src/Application.cpp
     src/Canoe.cpp
