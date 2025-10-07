@@ -12,4 +12,4 @@ set(SOURCES
     src/utilities.cpp
 )
 
-add_executable(laba1_exec ${SOURCES})
+add_executable(laba2_exec ${SOURCES})
