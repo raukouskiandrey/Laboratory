@@ -1,6 +1,7 @@
 #include "Utilities.h"
 #include <iostream>
 #include <regex>
+#include <ranges>
 #include <sstream>  
 #include <algorithm> 
 
@@ -56,7 +57,7 @@ float safeInputFloat(const string& prompt) {
         string input = readLineTrimmed(prompt);
 
         if (!input.empty() && regex_match(input, pat)) {
-            ranges::replace(input, ',', '.');
+            std::replace(input.begin(), input.end(), ',', '.');
 
             stringstream ss(input);
             ss.imbue(locale::classic());
