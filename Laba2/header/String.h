@@ -9,7 +9,7 @@ private:
 public:
 
 	String();
-	explicit String(const char* str);
+	String(const char* str);
 	String(const String& other);
 	~String();
 

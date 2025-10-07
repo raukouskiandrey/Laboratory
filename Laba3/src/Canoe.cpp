@@ -91,11 +91,6 @@ void Canoe::input() {
     }
 }
 
-
-
-
-
-
 void Canoe::editShopAddressAdd() {
     string newAddress;
     cout << "Enter new shop address: ";

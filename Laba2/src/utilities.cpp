@@ -34,7 +34,7 @@ String createString() {
     return newString;
 }
 
-void Operation(int operationType) {
+void operation(int operationType) {
     const char* operationName = (operationType == 0) ? "=" : "+=";
 
     cout << "Operation: " << operationName << endl;
@@ -69,10 +69,10 @@ void run() {
         cin.ignore();
         switch (choice) {
         case 1:
-            Operation(0);
+            operation(0);
             break;
         case 2:
-            Operation(1);
+            operation(1);
             break;
         case 3:
             cout << "Exit." << endl;

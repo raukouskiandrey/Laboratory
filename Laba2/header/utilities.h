@@ -6,4 +6,4 @@ void showMenu();
 void run();
 
 String createString();
-void Operation(int operationType); 
+void operation(int operationType); 
