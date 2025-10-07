@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+using namespace std;
+
 
 class Human {
 private:
@@ -15,6 +17,8 @@ public:
 
     Human& operator=(const Human& other);
 
+    virtual ~Human() = default;
+
     string getName() const;
     string getSurname() const;
     string getPatronymic() const;
@@ -25,6 +29,12 @@ public:
     void setPatronymic(string_view p);
     void setBirthYear(const int& by);
 
-    void displayHuman() const;
-    void inputHuman();
+    void editName();
+    void editSurname();
+    void editPatronymic();
+    void editBirthYear();
+    void editHumanDetails();
+
+    void virtual display() const;
+    void virtual input();
 };

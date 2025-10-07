@@ -7,7 +7,7 @@ struct taxPayment {
     float taxAmount;
 };
 
-class Entrepreneur : public Human {
+class Entrepreneur : public virtual Human {
 private:
     int licenseNumber = 1;
     string regAddress = "Minsk";
@@ -33,12 +33,21 @@ public:
     void setRegAddress(string_view regadd);
     void setTaxID(int taxid);
 
+    void editLicense();
+    void editRegAddress();
+    void editTaxID();
+    void editTaxPayments();
+    void editTaxPaymentEdit();
+    void editTaxPaymentAdd();
+    void editTaxPaymentDelete();
+    void editEntrepreneurDetails();
+
     void editTaxPayment(int index, string_view date, float amount);
     taxPayment getTaxPayment(int index) const;
 
     void AddTaxPayment(string_view date, float amount);
     void removeTaxPayment(int index);
     void resizeTaxArray();
-    void displayEntrepreneur() const;
-    void inputEntrepreneur();
+    void display() const override;
+    void input() override;
 };

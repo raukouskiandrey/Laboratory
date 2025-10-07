@@ -84,9 +84,8 @@ void Entrepreneur::resizeTaxArray() {
     capacity = newCapacity;
 }
 
-void Entrepreneur::displayEntrepreneur() const {
+void Entrepreneur::display() const{
     cout << "\n Entrepreneur information " << endl;
-    displayHuman();
     cout << "License number: " << licenseNumber << endl
         << "Registration address: " << regAddress << endl
         << "Tax ID: " << taxID << endl;
@@ -103,9 +102,8 @@ void Entrepreneur::displayEntrepreneur() const {
     }
 }
 
-void Entrepreneur::inputEntrepreneur() {
+void Entrepreneur::input() {
     cout << "Enter entrepreneur data:" << endl;
-    inputHuman();
     cout << "Enter license number: ";
     cin >> licenseNumber;
     cout << "Enter registration address: ";
@@ -136,4 +134,146 @@ void Entrepreneur::removeTaxPayment(int index) {
         tax[i] = tax[i + 1];
     }
     size--;
+}
+
+void Entrepreneur::editLicense() {
+    int newLicense;
+    cout << "Enter new license number: ";
+    cin >> newLicense;
+    setLicenseNumber(newLicense);
+}
+
+void Entrepreneur::editRegAddress() {
+    string newAddress;
+    cout << "Enter new registration address: ";
+    cin.ignore();
+    getline(cin, newAddress);
+    setRegAddress(newAddress);
+}
+
+void Entrepreneur::editTaxID() {
+    int newTaxID;
+    cout << "Enter new taxpayer ID: ";
+    cin >> newTaxID;
+    setTaxID(newTaxID);
+}
+
+void Entrepreneur::editTaxPaymentEdit() {
+    int taxSize = Entrepreneur::getSize();
+    if (taxSize == 0) {
+        cout << "There is nothing to edit, the list is empty." << endl;
+        return;
+    }
+
+    int paymentNum = safeInputInt("Enter payment number to edit: ");
+    if (paymentNum > 0 && paymentNum <= taxSize) {
+        string date;
+        cout << "Enter new date: ";
+        cin.ignore();
+        getline(cin, date);
+
+        float amount = safePositiveInputFloat("Enter new amount: ");
+
+        Entrepreneur::editTaxPayment(paymentNum - 1, date, amount);
+        cout << "Payment updated." << endl;
+    }
+    else {
+        cout << "Invalid payment number!" << endl;
+    }
+}
+
+void Entrepreneur::editTaxPaymentAdd() {
+    string date;
+    cout << "Enter tax payment date: ";
+    cin.ignore();
+    getline(cin, date);
+
+    float amount = safePositiveInputFloat("Enter tax amount: ");
+    AddTaxPayment(date, amount);
+    cout << "Tax payment added." << endl;
+}
+
+void Entrepreneur::editTaxPaymentDelete() {
+    int taxSize = Entrepreneur::getSize();
+    if (taxSize == 0) {
+        cout << "There is nothing to delete, the list is empty." << endl;
+        return;
+    }
+
+    int paymentNum = safeInputInt("Enter payment number to delete: ");
+    if (paymentNum > 0 && paymentNum <= taxSize) {
+        Entrepreneur::removeTaxPayment(paymentNum - 1);
+        cout << "Payment deleted." << endl;
+    }
+    else {
+        cout << "Invalid payment number!" << endl;
+    }
+}
+
+void Entrepreneur::editTaxPayments() {
+    while (true) {
+        if (int taxSize = Entrepreneur::getSize(); taxSize > 0) {
+            cout << "Existing tax payments:" << endl;
+            for (int i = 0; i < taxSize; i++) {
+                taxPayment payment = Entrepreneur::getTaxPayment(i);
+                cout << i + 1 << ". Date: " << payment.taxDate
+                    << ", Amount: " << payment.taxAmount << endl;
+            }
+        }
+
+        cout << "Choose action:" << endl
+            << "1 - Edit existing payment" << endl
+            << "2 - Add new payment" << endl
+            << "3 - Delete payment" << endl
+            << "4 - Return" << endl;
+
+        int action = safeInputInt("Choice: ");
+
+        switch (action) {
+        case 1:
+            editTaxPaymentEdit();
+            break;
+        case 2:
+            editTaxPaymentAdd();
+            break;
+        case 3:
+            editTaxPaymentDelete();
+            break;
+        case 4:
+            return;
+        default:
+            cout << "Invalid choice." << endl;
+        }
+    }
+}
+
+void Entrepreneur::editEntrepreneurDetails() {
+    while (true) {
+        cout << endl << "Change entrepreneur data: " << endl
+            << "1 - Change license number" << endl
+            << "2 - Change registration address" << endl
+            << "3 - Change taxpayer ID" << endl
+            << "4 - Change tax payment data" << endl
+            << "5 - Return" << endl;
+
+        int subChoice = safeInputInt("Choice:");
+        switch (subChoice) {
+        case 1:
+            editLicense();
+            break;
+        case 2:
+            editRegAddress();
+            break;
+        case 3:
+            editTaxID();
+            break;
+        case 4:
+            editTaxPayments();
+            break;
+        case 5:
+            return;
+        default:
+            cout << "Invalid choice." << endl;
+        }
+    }
 }

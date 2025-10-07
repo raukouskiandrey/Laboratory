@@ -7,7 +7,7 @@ struct borderCrossing {
     string country;
 };
 
-class Tourist : public Human {
+class Tourist : public virtual Human {
 private:
     string passportData = "8545199";
     borderCrossing* borderCross = nullptr;
@@ -26,12 +26,19 @@ public:
 
     void setPassportData(string_view pasData);
 
+    void editPassport();
+    void editBorderCrossings();
+    void editBorderCrossingEdit();
+    void editBorderCrossingAdd();
+    void editBorderCrossingDelete();
+    void editTouristDetails();
+
     void editBorderCross(int index, string_view date, string_view country);
     borderCrossing getBorderCross(int index) const;
 
     void AddBorderCross(string_view date, string_view country);
     void removeBorderCross(int index);
     void resizeBorderArray();
-    void displayTourist() const;
-    void inputTourist();
+    void display() const override;
+    void input() override;
 };

@@ -60,57 +60,14 @@ void Operation(int operationType) {
     cout << "String 2: "; print(str2); cout << endl;
 }
 
-int safeInputInt() {
-    string input;
-    int value;
-
-    while (true) {
-        cout << "Enter your choice: ";
-        getline(cin, input);
-
-        if (input.empty()) {
-            cout << "Error: Empty input. Please enter a number." << endl;
-            continue;
-        }
-
-        bool isValid = true;
-        int startIndex = 0;
-
-        if (input[0] == '-') {
-            startIndex = 1;
-        }
-
-        for (int i = startIndex; i < input.length(); i++) {
-            if (!isdigit(static_cast<unsigned char>(input[i]))) {
-                isValid = false;
-                break;
-            }
-        }
-
-        if (!isValid || input.length() == 0) {
-            cout << "Error: Invalid input. Please enter a valid integer number." << endl;
-            continue;
-        }
-
-        value = 0;
-        bool isNegative = (input[0] == '-');
-
-        for (int i = startIndex; i < input.length(); i++) {
-            value = value * 10 + (input[i] - '0');
-        }
-
-        if (isNegative) {
-            value = -value;
-        }
-
-        return value;
-    }
-}
 
 void run() {
     while (true) {
         showMenu();
-        switch (int choice = safeInputInt();choice) {
+        int choice;
+        cin >>choice;
+        cin.ignore();
+        switch (choice) {
         case 1:
             Operation(0);
             break;

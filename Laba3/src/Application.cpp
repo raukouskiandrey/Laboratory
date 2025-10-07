@@ -27,7 +27,7 @@ void App::addCanoe() {
     Canoe c;
     cout << "Adding canoe #" << size + 1 << endl;
 
-    c.inputCanoe();
+    c.input();
 
     while (size >= capacity)
         resize();
@@ -44,7 +44,7 @@ void App::listCanoe() const {
     cout << "Canoe list" << endl;
     for (int i = 0; i < size; ++i) {
         cout << "\n#" << (i + 1) << "\n";
-        canoes[i].displayCanoe();
+        canoes[i].display();
     }
 }
 
