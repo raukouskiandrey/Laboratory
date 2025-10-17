@@ -5,7 +5,7 @@ using namespace std;
 
 Human::Human() = default;
 
-Human::Human(const string& n, const string& sn, const string& p, int by)  
+Human::Human(const string& n, const string& sn, const string& p, int by)
     : name(n), surname(sn), patronymic(p), birthYear(by) {}
 
 Human::Human(const Human& other) : name(other.name), surname(other.surname), patronymic(other.patronymic), birthYear(other.birthYear) {}

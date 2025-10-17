@@ -84,7 +84,7 @@ void Entrepreneur::resizeTaxArray() {
     capacity = newCapacity;
 }
 
-void Entrepreneur::display() const{
+void Entrepreneur::display() const {
     cout << "\n Entrepreneur information " << endl;
     cout << "License number: " << licenseNumber << endl
         << "Registration address: " << regAddress << endl
