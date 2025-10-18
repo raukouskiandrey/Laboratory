@@ -9,10 +9,10 @@ private:
     BorderCrossingList borderCrossings; 
 
 public:
-    Tourist() = default;
+    Tourist();
     Tourist(const Tourist& other);
     Tourist& operator=(const Tourist& other);
-    ~Tourist() = default;
+    ~Tourist();
 
     std::string getPassportData() const;
     int getBorderCrossingSize() const; 

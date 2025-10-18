@@ -9,10 +9,10 @@ private:
     ShopAddressList shopAddresses; 
 
 public:
-    Canoe() = default;
+    Canoe();
     Canoe(const Canoe& other);
     Canoe& operator=(const Canoe& other);
-    ~Canoe() = default;
+    ~Canoe();
 
     int getShopSize() const; 
     int getShopCapacity() const; 
