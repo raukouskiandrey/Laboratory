@@ -6,12 +6,16 @@ using namespace std;
 void App::resize() {
     int newCapacity = (capacity == 0) ? 2 : capacity * 2;
     auto newArr = new Canoe[newCapacity];
-    int limit = (size < newCapacity) ? size : newCapacity;
-    for (int i = 0; i < limit; ++i)
+
+    for (int i = 0; i < size; ++i) {
         newArr[i] = canoes[i];
+    }
+
     delete[] canoes;
     canoes = newArr;
     capacity = newCapacity;
+
+    cout << "Array resized to capacity: " << capacity << endl;
 }
 
 void App::showMenu() const {
@@ -54,14 +58,12 @@ void App::addCanoe() {
         c1.setTaxID(55001);
         c1.setPassportData("NO123456");
 
-        // Используем новые методы
         for (int i = c1.Entrepreneur::getTaxPaymentSize() - 1; i >= 0; i--) {
             c1.removeTaxPayment(i);
         }
         c1.AddTaxPayment("2024-03-10", 1200.0f);
         c1.AddTaxPayment("2024-06-15", 1800.0f);
 
-        // Используем новые методы
         for (int i = c1.Tourist::getBorderCrossingSize() - 1; i >= 0; i--) {
             c1.removeBorderCross(i);
         }
@@ -81,7 +83,6 @@ void App::addCanoe() {
         c2.setTaxID(66002);
         c2.setPassportData("DE987654");
 
-        // Используем новые методы
         for (int i = c2.Entrepreneur::getTaxPaymentSize() - 1; i >= 0; i--) {
             c2.removeTaxPayment(i);
         }
@@ -89,7 +90,6 @@ void App::addCanoe() {
         c2.AddTaxPayment("2024-04-10", 3200.0f);
         c2.AddTaxPayment("2024-09-15", 2800.0f);
 
-        // Используем новые методы
         for (int i = c2.Tourist::getBorderCrossingSize() - 1; i >= 0; i--) {
             c2.removeBorderCross(i);
         }
@@ -111,7 +111,6 @@ void App::addCanoe() {
         c3.setTaxID(77003);
         c3.setPassportData("JP456789");
 
-        // Используем новые методы
         for (int i = c3.Entrepreneur::getTaxPaymentSize() - 1; i >= 0; i--) {
             c3.removeTaxPayment(i);
         }
@@ -120,7 +119,6 @@ void App::addCanoe() {
         c3.AddTaxPayment("2024-07-12", 1900.0f);
         c3.AddTaxPayment("2024-11-05", 2600.0f);
 
-        // Используем новые методы
         for (int i = c3.Tourist::getBorderCrossingSize() - 1; i >= 0; i--) {
             c3.removeBorderCross(i);
         }
