@@ -3,9 +3,9 @@
 
 class App {
 private:
-    Canoe* canoes = nullptr;
-    int size = 0;
-    int capacity = 0;
+    Canoe* canoes;
+    int size;
+    int capacity;
 
     void resize();
     void showMenu() const;
@@ -15,7 +15,7 @@ private:
     void editCanoe();
 
 public:
-    App() = default;
+    App();
     ~App() { delete[] canoes; }
     void run();
 };

@@ -3,6 +3,8 @@
 #include <iostream>
 using namespace std;
 
+App::App() : canoes(nullptr), size(0), capacity(0) {}
+
 void App::resize() {
     int newCapacity = (capacity == 0) ? 2 : capacity * 2;
     auto newArr = new Canoe[newCapacity];
@@ -40,13 +42,19 @@ void App::addCanoe() {
         Canoe c;
         c.input();
 
-        while (size >= capacity)
+        if (size >= capacity) {
             resize();
+        }
+
+        canoes[size] = c;
         ++size;
-        canoes[size - 1] = c;
         cout << "Canoe added." << endl;
     }
     else if (inputChoice == 2) {
+        // Убедимся, что есть достаточно места для 3 каноэ
+        while (size + 3 >= capacity) {
+            resize();
+        }
 
         Canoe c1;
         c1.setName("Alexandr");
@@ -58,13 +66,17 @@ void App::addCanoe() {
         c1.setTaxID(55001);
         c1.setPassportData("NO123456");
 
-        for (int i = c1.Entrepreneur::getTaxPaymentSize() - 1; i >= 0; i--) {
+        // Безопасное удаление налоговых платежей
+        int taxSize1 = c1.Entrepreneur::getTaxPaymentSize();
+        for (int i = taxSize1 - 1; i >= 0; i--) {
             c1.removeTaxPayment(i);
         }
         c1.AddTaxPayment("2024-03-10", 1200.0f);
         c1.AddTaxPayment("2024-06-15", 1800.0f);
 
-        for (int i = c1.Tourist::getBorderCrossingSize() - 1; i >= 0; i--) {
+        // Безопасное удаление пересечений границ
+        int borderSize1 = c1.Tourist::getBorderCrossingSize();
+        for (int i = borderSize1 - 1; i >= 0; i--) {
             c1.removeBorderCross(i);
         }
         c1.AddBorderCross("2024-01-15", "Norway");
@@ -83,14 +95,16 @@ void App::addCanoe() {
         c2.setTaxID(66002);
         c2.setPassportData("DE987654");
 
-        for (int i = c2.Entrepreneur::getTaxPaymentSize() - 1; i >= 0; i--) {
+        int taxSize2 = c2.Entrepreneur::getTaxPaymentSize();
+        for (int i = taxSize2 - 1; i >= 0; i--) {
             c2.removeTaxPayment(i);
         }
         c2.AddTaxPayment("2024-01-05", 2500.0f);
         c2.AddTaxPayment("2024-04-10", 3200.0f);
         c2.AddTaxPayment("2024-09-15", 2800.0f);
 
-        for (int i = c2.Tourist::getBorderCrossingSize() - 1; i >= 0; i--) {
+        int borderSize2 = c2.Tourist::getBorderCrossingSize();
+        for (int i = borderSize2 - 1; i >= 0; i--) {
             c2.removeBorderCross(i);
         }
         c2.AddBorderCross("2024-02-14", "Germany");
@@ -111,7 +125,8 @@ void App::addCanoe() {
         c3.setTaxID(77003);
         c3.setPassportData("JP456789");
 
-        for (int i = c3.Entrepreneur::getTaxPaymentSize() - 1; i >= 0; i--) {
+        int taxSize3 = c3.Entrepreneur::getTaxPaymentSize();
+        for (int i = taxSize3 - 1; i >= 0; i--) {
             c3.removeTaxPayment(i);
         }
         c3.AddTaxPayment("2024-01-20", 1500.0f);
@@ -119,7 +134,8 @@ void App::addCanoe() {
         c3.AddTaxPayment("2024-07-12", 1900.0f);
         c3.AddTaxPayment("2024-11-05", 2600.0f);
 
-        for (int i = c3.Tourist::getBorderCrossingSize() - 1; i >= 0; i--) {
+        int borderSize3 = c3.Tourist::getBorderCrossingSize();
+        for (int i = borderSize3 - 1; i >= 0; i--) {
             c3.removeBorderCross(i);
         }
         c3.AddBorderCross("2024-01-10", "Japan");
@@ -132,23 +148,24 @@ void App::addCanoe() {
         c3.AddShopAddress("Souvenir Center, Rio");
         c3.AddShopAddress("Cultural Store, Cape Town");
 
-        while (size + 3 >= capacity)
-            resize();
-
+        // Безопасное добавление в массив
         canoes[size++] = c1;
         canoes[size++] = c2;
         canoes[size++] = c3;
 
+        cout << "3 test canoes added." << endl;
     }
     else {
         cout << "Invalid choice. Using manual input." << endl;
         Canoe c;
         c.input();
 
-        while (size >= capacity)
+        if (size >= capacity) {
             resize();
+        }
+
+        canoes[size] = c;
         ++size;
-        canoes[size - 1] = c;
         cout << "Canoe added." << endl;
     }
 }
@@ -172,8 +189,9 @@ void App::deleteCanoe() {
     }
     int number = safeInputInt("Enter canoe number to delete: ");
     if (number > 0 && number <= size) {
-        for (int i = number - 1; i < size - 1; ++i)
+        for (int i = number - 1; i < size - 1; ++i) {
             canoes[i] = canoes[i + 1];
+        }
         --size;
         cout << "Canoe deleted." << endl;
     }
