@@ -11,10 +11,10 @@ private:
     TaxPaymentList taxPayments; 
 
 public:
-    Entrepreneur() = default;
+    Entrepreneur();
     Entrepreneur(const Entrepreneur& other);
     Entrepreneur& operator=(const Entrepreneur& other);
-    ~Entrepreneur() = default;
+    ~Entrepreneur();
 
     int getLicenseNumber() const;
     std::string getRegAddress() const;
