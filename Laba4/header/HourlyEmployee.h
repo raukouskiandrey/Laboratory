@@ -10,7 +10,7 @@ public:
     HourlyEmployee();
     HourlyEmployee(string employeeName, int employeeId, string employeePosition, int employeeHours, double employeeHourlyRate);
 
-    ~HourlyEmployee();
+    virtual ~HourlyEmployee();
 
     double calculateSalary() override;
     void input() override;

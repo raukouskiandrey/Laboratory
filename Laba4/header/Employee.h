@@ -6,20 +6,20 @@ class Employee {
 private:
     string name;
     int id;
-    string position;  
+    string position;
 public:
     Employee();
     Employee(string employeeName, int employeeId, string employeePosition = "Unknown");
 
-    ~Employee();
+    virtual ~Employee();
 
     string getName() const;
     int getId() const;
-    string getPosition() const;  
+    string getPosition() const;
 
     void setName(string n);
     void setId(int Id);
-    void setPosition(string pos);  
+    void setPosition(string pos);
 
     virtual double calculateSalary() = 0;
     virtual void input() = 0;

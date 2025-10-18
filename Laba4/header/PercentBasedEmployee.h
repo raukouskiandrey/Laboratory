@@ -10,7 +10,7 @@ public:
     PercentBasedEmployee();
     PercentBasedEmployee(string employeeName, int employeeId, string employeePosition, double employeeSalary, double employeeTotalSales, double employeePercentRate);
 
-    ~PercentBasedEmployee();
+    virtual ~PercentBasedEmployee();
 
     double calculateSalary() override;
     void input() override;

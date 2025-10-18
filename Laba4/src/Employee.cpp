@@ -8,7 +8,7 @@ Employee::Employee(string employeeName, int employeeId, string employeePosition)
     : name(employeeName), id(employeeId), position(employeePosition) {}
 
 Employee::~Employee() {
-    cout << "Destructor Employee";
+    cout << "Destructor Employee" << endl;
 }
 
 string Employee::getName() const {
@@ -19,7 +19,7 @@ int Employee::getId() const {
     return id;
 }
 
-string Employee::getPosition() const {  
+string Employee::getPosition() const {
     return position;
 }
 
@@ -31,6 +31,6 @@ void Employee::setId(int Id) {
     id = Id;
 }
 
-void Employee::setPosition(string pos) {  
+void Employee::setPosition(string pos) {
     position = pos;
 }

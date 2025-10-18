@@ -16,9 +16,9 @@ private:
     int findById(int id) const;
     bool idExists(int id) const;
 
-    void displayMainMenu();
-    void displayEmployeeTypeMenu();
-    void displayOutputMenu();
+    void displayMainMenu() const;
+    void displayEmployeeTypeMenu() const;
+    void displayOutputMenu() const;
 
     void addEmployee();
     void addHourlyEmployee();

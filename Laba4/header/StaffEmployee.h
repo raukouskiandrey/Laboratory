@@ -8,7 +8,7 @@ public:
     StaffEmployee();
     StaffEmployee(string employeeName, int employeeId, string employeePosition, double employeeSalary);
 
-    ~StaffEmployee();
+    virtual ~StaffEmployee();
 
     double calculateSalary() override;
     void input() override;

@@ -44,6 +44,6 @@ void PercentBasedEmployee::output() {
         << "Total salary: " << calculateSalary() << endl;
 }
 
-string PercentBasedEmployee::getType() const  {
+string PercentBasedEmployee::getType() const {
     return "PERCENT-BASED";
 }

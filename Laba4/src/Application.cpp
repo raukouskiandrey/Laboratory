@@ -6,10 +6,8 @@
 
 using namespace std;
 
-App::App() {
-    capacity = 5;
+App::App() : capacity(5), employeeCount(0) {
     employees = new Employee * [capacity];
-    employeeCount = 0;
 }
 
 App::~App() {
@@ -51,8 +49,8 @@ bool App::idExists(int id) const {
     return findById(id) != -1;
 }
 
-void App::displayMainMenu() {
-    cout << "\n\tEMPLOYEE MANAGEMENT SYSTEM" << endl;
+void App::displayMainMenu() const {
+    cout << "\n\tMENU" << endl;
     cout << "1. Enter employee" << endl;
     cout << "2. Show employees" << endl;
     cout << "3. Delete employee " << endl;
@@ -60,7 +58,7 @@ void App::displayMainMenu() {
     cout << "Choose option: ";
 }
 
-void App::displayEmployeeTypeMenu() {
+void App::displayEmployeeTypeMenu() const {
     cout << "\n\tCHOOSE EMPLOYEE TYPE" << endl;
     cout << "1. Hourly employee" << endl;
     cout << "2. Staff employee" << endl;
@@ -69,7 +67,7 @@ void App::displayEmployeeTypeMenu() {
     cout << "Choose type: ";
 }
 
-void App::displayOutputMenu() {
+void App::displayOutputMenu() const {
     cout << "\n\tSHOW EMPLOYEES" << endl;
     cout << "1. Show all employees" << endl;
     cout << "2. Show hourly employees" << endl;
