@@ -14,6 +14,9 @@ set(SOURCES
     src/Canoe.cpp
     src/Tourist.cpp
     src/Utilities.cpp
+    src/TaxPaymentList.cpp
+    src/ShopAddressList.cpp
+    src/BorderCrossingList.cpp
 )
 
 add_executable(laba3_exec ${SOURCES})
