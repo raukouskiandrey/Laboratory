@@ -1,18 +1,13 @@
 #include "Entrepreneur.h"
-#include"Utilities.h"
+#include "Utilities.h"
 #include <iostream>
 using namespace std;
 
-Entrepreneur::Entrepreneur() {
-    tax = new taxPayment[capacity];
-}
+Entrepreneur::Entrepreneur() = default;
 
-Entrepreneur::Entrepreneur(const Entrepreneur& other) : Human(other), licenseNumber(other.licenseNumber), regAddress(other.regAddress), taxID(other.taxID), size(other.size), capacity(other.capacity) {
-    tax = new taxPayment[capacity];
-    for (int i = 0; i < size; i++) {
-        tax[i] = other.tax[i];
-    }
-}
+Entrepreneur::Entrepreneur(const Entrepreneur& other)
+    : Human(other), licenseNumber(other.licenseNumber), regAddress(other.regAddress),
+    taxID(other.taxID), taxPayments(other.taxPayments) {}
 
 Entrepreneur& Entrepreneur::operator=(const Entrepreneur& other) {
     if (this != &other) {
@@ -20,68 +15,36 @@ Entrepreneur& Entrepreneur::operator=(const Entrepreneur& other) {
         licenseNumber = other.licenseNumber;
         regAddress = other.regAddress;
         taxID = other.taxID;
-        size = other.size;
-        capacity = other.capacity;
-
-        delete[] tax;
-        tax = new taxPayment[capacity];
-        for (int i = 0; i < size; i++) {
-            tax[i] = other.tax[i];
-        }
+        taxPayments = other.taxPayments;
     }
     return *this;
 }
 
-Entrepreneur::~Entrepreneur() {
-    delete[] tax;
-}
+Entrepreneur::~Entrepreneur() = default;
 
 int Entrepreneur::getLicenseNumber() const { return licenseNumber; }
 string Entrepreneur::getRegAddress() const { return regAddress; }
 int Entrepreneur::getTaxID() const { return taxID; }
-int Entrepreneur::getSize() const { return size; }
-int Entrepreneur::getCapacity() const { return capacity; }
+int Entrepreneur::getTaxPaymentSize() const { return taxPayments.getSize(); }
 
 void Entrepreneur::setLicenseNumber(int lnumb) { licenseNumber = lnumb; }
 void Entrepreneur::setRegAddress(string_view regadd) { regAddress = regadd; }
 void Entrepreneur::setTaxID(int taxid) { taxID = taxid; }
 
 void Entrepreneur::editTaxPayment(int index, string_view date, float amount) {
-    if (index >= 0 && index < size) {
-        tax[index].taxDate = date;
-        tax[index].taxAmount = amount;
-    }
+    taxPayments.editTaxPayment(index, date, amount);
 }
 
 taxPayment Entrepreneur::getTaxPayment(int index) const {
-    if (index >= 0 && index < size) {
-        return tax[index];
-    }
-    return taxPayment();
+    return taxPayments.getTaxPayment(index);
 }
 
 void Entrepreneur::AddTaxPayment(string_view date, float amount) {
-    if (size >= capacity) {
-        resizeTaxArray();
-    }
-    tax[size].taxDate = date;
-    tax[size].taxAmount = amount;
-    size++;
+    taxPayments.AddTaxPayment(date, amount);
 }
 
-void Entrepreneur::resizeTaxArray() {
-    int newCapacity = (capacity == 0) ? 3 : capacity * 2;
-    auto newTax = new taxPayment[newCapacity];
-
-    if (tax != nullptr && size > 0) {
-        for (int i = 0; i < size; i++) {
-            newTax[i] = tax[i];
-        }
-        delete[] tax;
-    }
-
-    tax = newTax;
-    capacity = newCapacity;
+void Entrepreneur::removeTaxPayment(int index) {
+    taxPayments.removeTaxPayment(index);
 }
 
 void Entrepreneur::display() const {
@@ -90,11 +53,12 @@ void Entrepreneur::display() const {
         << "Registration address: " << regAddress << endl
         << "Tax ID: " << taxID << endl;
 
-    if (size > 0 && tax != nullptr) {
+    if (taxPayments.getSize() > 0) {
         cout << "Tax payments:" << endl;
-        for (int i = 0; i < size; i++) {
-            cout << "  Date: " << tax[i].taxDate
-                << ", Amount: " << tax[i].taxAmount << endl;
+        for (int i = 0; i < taxPayments.getSize(); i++) {
+            taxPayment payment = taxPayments.getTaxPayment(i);
+            cout << "  Date: " << payment.taxDate
+                << ", Amount: " << payment.taxAmount << endl;
         }
     }
     else {
@@ -127,15 +91,6 @@ void Entrepreneur::input() {
     }
 }
 
-void Entrepreneur::removeTaxPayment(int index) {
-    if (index < 0 || index >= size) return;
-
-    for (int i = index; i < size - 1; i++) {
-        tax[i] = tax[i + 1];
-    }
-    size--;
-}
-
 void Entrepreneur::editLicense() {
     int newLicense;
     cout << "Enter new license number: ";
@@ -159,7 +114,7 @@ void Entrepreneur::editTaxID() {
 }
 
 void Entrepreneur::editTaxPaymentEdit() {
-    int taxSize = Entrepreneur::getSize();
+    int taxSize = getTaxPaymentSize();
     if (taxSize == 0) {
         cout << "There is nothing to edit, the list is empty." << endl;
         return;
@@ -174,7 +129,7 @@ void Entrepreneur::editTaxPaymentEdit() {
 
         float amount = safePositiveInputFloat("Enter new amount: ");
 
-        Entrepreneur::editTaxPayment(paymentNum - 1, date, amount);
+        editTaxPayment(paymentNum - 1, date, amount);
         cout << "Payment updated." << endl;
     }
     else {
@@ -194,7 +149,7 @@ void Entrepreneur::editTaxPaymentAdd() {
 }
 
 void Entrepreneur::editTaxPaymentDelete() {
-    int taxSize = Entrepreneur::getSize();
+    int taxSize = getTaxPaymentSize();
     if (taxSize == 0) {
         cout << "There is nothing to delete, the list is empty." << endl;
         return;
@@ -202,7 +157,7 @@ void Entrepreneur::editTaxPaymentDelete() {
 
     int paymentNum = safeInputInt("Enter payment number to delete: ");
     if (paymentNum > 0 && paymentNum <= taxSize) {
-        Entrepreneur::removeTaxPayment(paymentNum - 1);
+        removeTaxPayment(paymentNum - 1);
         cout << "Payment deleted." << endl;
     }
     else {
@@ -212,10 +167,11 @@ void Entrepreneur::editTaxPaymentDelete() {
 
 void Entrepreneur::editTaxPayments() {
     while (true) {
-        if (int taxSize = Entrepreneur::getSize(); taxSize > 0) {
+        int taxSize = getTaxPaymentSize();
+        if (taxSize > 0) {
             cout << "Existing tax payments:" << endl;
             for (int i = 0; i < taxSize; i++) {
-                taxPayment payment = Entrepreneur::getTaxPayment(i);
+                taxPayment payment = getTaxPayment(i);
                 cout << i + 1 << ". Date: " << payment.taxDate
                     << ", Amount: " << payment.taxAmount << endl;
             }

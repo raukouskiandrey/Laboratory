@@ -1,30 +1,23 @@
 #pragma once
 #include "Human.h"
+#include "BorderCrossingList.h"
 #include <string>
-
-struct borderCrossing {
-    string crossingDate;
-    string country;
-};
 
 class Tourist : public virtual Human {
 private:
-    string passportData = "8545199";
-    borderCrossing* borderCross = nullptr;
-    int size = 0;
-    int capacity = 3;
+    std::string passportData = "8545199";
+    BorderCrossingList borderCrossings; 
 
 public:
-    Tourist();
+    Tourist() = default;
     Tourist(const Tourist& other);
     Tourist& operator=(const Tourist& other);
-    ~Tourist();
+    ~Tourist() = default;
 
-    string getPassportData() const;
-    int getSize() const;
-    int getCapacity() const;
+    std::string getPassportData() const;
+    int getBorderCrossingSize() const; 
 
-    void setPassportData(string_view pasData);
+    void setPassportData(std::string_view pasData);
 
     void editPassport();
     void editBorderCrossings();
@@ -33,12 +26,12 @@ public:
     void editBorderCrossingDelete();
     void editTouristDetails();
 
-    void editBorderCross(int index, string_view date, string_view country);
+    void editBorderCross(int index, std::string_view date, std::string_view country);
     borderCrossing getBorderCross(int index) const;
 
-    void AddBorderCross(string_view date, string_view country);
+    void AddBorderCross(std::string_view date, std::string_view country);
     void removeBorderCross(int index);
-    void resizeBorderArray();
+
     void display() const override;
     void input() override;
 };

@@ -4,56 +4,35 @@
 #include <iostream>
 using namespace std;
 
-Canoe::Canoe() {
-    shopAddress = new string[shopCapacity];
-}
+Canoe::Canoe() = default;
 
-Canoe::Canoe(const Canoe& other) : Entrepreneur(other), Tourist(other), shopSize(other.shopSize), shopCapacity(other.shopCapacity) {
-    shopAddress = new string[shopCapacity];
-    for (int i = 0; i < shopSize; i++) {
-        shopAddress[i] = other.shopAddress[i];
-    }
-}
+Canoe::Canoe(const Canoe& other)
+    : Entrepreneur(other), Tourist(other), shopAddresses(other.shopAddresses) {}
 
 Canoe& Canoe::operator=(const Canoe& other) {
     if (this != &other) {
         Entrepreneur::operator=(other);
         Tourist::operator=(other);
-        shopSize = other.shopSize;
-        shopCapacity = other.shopCapacity;
-
-        delete[] shopAddress;
-        shopAddress = new string[shopCapacity];
-        for (int i = 0; i < shopSize; i++) {
-            shopAddress[i] = other.shopAddress[i];
-        }
+        shopAddresses = other.shopAddresses;
     }
     return *this;
 }
 
-Canoe::~Canoe() {
-    delete[] shopAddress;
-}
+Canoe::~Canoe() = default;
 
-int Canoe::getShopSize() const { return shopSize; }
-int Canoe::getShopCapacity() const { return shopCapacity; }
+int Canoe::getShopSize() const { return shopAddresses.getSize(); }
+int Canoe::getShopCapacity() const { return shopAddresses.getCapacity(); }
 
 void Canoe::AddShopAddress(string_view Address) {
-    if (shopSize >= shopCapacity) {
-        resizeShopArray();
-    }
-    shopAddress[shopSize] = string(Address);
-    shopSize++;
+    shopAddresses.AddShopAddress(Address);
 }
 
-void Canoe::resizeShopArray() {
-    shopCapacity = (shopCapacity == 0) ? 3 : shopCapacity * 2;
-    auto newShopAddress = new string[shopCapacity];
-    for (int i = 0; i < shopSize; i++) {
-        newShopAddress[i] = shopAddress[i];
-    }
-    delete[] shopAddress;
-    shopAddress = newShopAddress;
+void Canoe::removeShopAddress(int index) {
+    shopAddresses.removeShopAddress(index);
+}
+
+string Canoe::getShopAddress(int index) const {
+    return shopAddresses.getShopAddress(index);
 }
 
 void Canoe::display() const {
@@ -61,14 +40,14 @@ void Canoe::display() const {
     Entrepreneur::display();
     Tourist::display();
 
-    if (shopSize == 0) {
+    if (shopAddresses.getSize() == 0) {
         cout << "No purchase addresses\n";
         return;
     }
     else {
         cout << "Purchase addresses:" << endl;
-        for (int i = 0; i < shopSize; i++) {
-            cout << "  " << shopAddress[i] << endl;
+        for (int i = 0; i < shopAddresses.getSize(); i++) {
+            cout << "  " << shopAddresses.getShopAddress(i) << endl;
         }
     }
 }
@@ -100,18 +79,15 @@ void Canoe::editShopAddressAdd() {
 }
 
 void Canoe::editShopAddressDelete() {
-    if (shopSize > 0) {
+    if (shopAddresses.getSize() > 0) {
         cout << "Existing addresses:" << endl;
-        for (int i = 0; i < shopSize; i++) {
-            cout << i + 1 << ". " << shopAddress[i] << endl;
+        for (int i = 0; i < shopAddresses.getSize(); i++) {
+            cout << i + 1 << ". " << shopAddresses.getShopAddress(i) << endl;
         }
 
         int addressNum = safeInputInt("Enter address number to delete: ");
-        if (addressNum > 0 && addressNum <= shopSize) {
-            for (int i = addressNum - 1; i < shopSize - 1; i++) {
-                shopAddress[i] = shopAddress[i + 1];
-            }
-            shopSize--;
+        if (addressNum > 0 && addressNum <= shopAddresses.getSize()) {
+            removeShopAddress(addressNum - 1);
             cout << "Address deleted." << endl;
         }
         else {

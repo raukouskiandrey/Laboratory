@@ -1,36 +1,28 @@
 #pragma once
 #include "Human.h"
+#include "TaxPaymentList.h"
 #include <string>
-
-struct taxPayment {
-    string taxDate;
-    float taxAmount;
-};
 
 class Entrepreneur : public virtual Human {
 private:
     int licenseNumber = 1;
-    string regAddress = "Minsk";
+    std::string regAddress = "Minsk";
     int taxID = 1;
-    taxPayment* tax = nullptr;
-    int size = 0;
-    int capacity = 3;
-
+    TaxPaymentList taxPayments; 
 
 public:
-    Entrepreneur();
+    Entrepreneur() = default;
     Entrepreneur(const Entrepreneur& other);
     Entrepreneur& operator=(const Entrepreneur& other);
-    ~Entrepreneur();
+    ~Entrepreneur() = default;
 
     int getLicenseNumber() const;
-    string getRegAddress() const;
+    std::string getRegAddress() const;
     int getTaxID() const;
-    int getSize() const;
-    int getCapacity() const;
+    int getTaxPaymentSize() const; 
 
     void setLicenseNumber(int lnumb);
-    void setRegAddress(string_view regadd);
+    void setRegAddress(std::string_view regadd);
     void setTaxID(int taxid);
 
     void editLicense();
@@ -42,12 +34,12 @@ public:
     void editTaxPaymentDelete();
     void editEntrepreneurDetails();
 
-    void editTaxPayment(int index, string_view date, float amount);
+    void editTaxPayment(int index, std::string_view date, float amount);
     taxPayment getTaxPayment(int index) const;
 
-    void AddTaxPayment(string_view date, float amount);
+    void AddTaxPayment(std::string_view date, float amount);
     void removeTaxPayment(int index);
-    void resizeTaxArray();
+
     void display() const override;
     void input() override;
 };
