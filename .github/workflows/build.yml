@@ -103,3 +103,23 @@ jobs:
             -Dsonar.cfamily.compile-commands=Laba4/build_wrapper/compile_commands.json
             -Dsonar.coverage.exclusions=**
             -Dsonar.cfamily.skipCoverage=true
+
+      - name: Build Laba5
+        run: |
+          rm -rf Laba5/build
+          mkdir Laba5/build
+          cmake -S Laba5 -B Laba5/build
+          build-wrapper-linux-x86-64 --out-dir Laba5/build_wrapper make -C Laba5/build
+
+      - name: SonarCloud scan Laba5
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=raukouskiandrey_Laba5
+            -Dsonar.organization=${{ env.SONAR_ORG }}
+            -Dsonar.sources=Laba5
+            -Dsonar.cfamily.compile-commands=Laba5/build_wrapper/compile_commands.json
+            -Dsonar.coverage.exclusions=**
+            -Dsonar.cfamily.skipCoverage=true
