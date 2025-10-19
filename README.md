@@ -3,3 +3,4 @@
 ## 2.[Лабораторная работа на тему "Дружественные функции. Перегрузка операторов"](https://github.com/raukouskiandrey/Laboratory/tree/main/Laba2)
 ## 3.[Лабораторная работа на тему "Наследование"](https://github.com/raukouskiandrey/Laboratory/tree/main/Laba3)
 ## 4.[Лабораторная работа на тему "Виртуальные функции. Абстрактные классы"](https://github.com/raukouskiandrey/Laboratory/tree/main/Laba4)
+## 5.[Лабораторная работа на тему "Шаблоны функций и классов"](https://github.com/raukouskiandrey/Laboratory/tree/main/Laba5)
