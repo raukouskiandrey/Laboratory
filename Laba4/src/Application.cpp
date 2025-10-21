@@ -290,7 +290,7 @@ void App::run() {
             deleteEmployeeById();
             break;
         case 0:
-            cout << "Goodbye!" << endl;
+            cout << "Guten Abend!" << endl;
             return;
         default:
             cout << "Invalid choice! Please try again." << endl;

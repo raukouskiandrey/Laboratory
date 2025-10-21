@@ -45,10 +45,10 @@ void runMenu() {
         cout << "1. Add element to beginning\n";
         cout << "2. Add element to end\n";
         cout << "3. Show list\n";
-        cout << "4. Remove first element\n";
-        cout << "5. Remove last element\n";
-        cout << "6. Remove by index\n";
-        cout << "7. Remove all elements\n";
+        cout << "4. Delete first element\n";
+        cout << "5. Delete last element\n";
+        cout << "6. Delete by index\n";
+        cout << "7. Delete all elements\n";
         cout << "8. Show list size\n";
         cout << "0. Exit\n> ";
 
