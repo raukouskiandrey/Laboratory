@@ -66,6 +66,7 @@ void SinglyLinkedList<T>::print() {
 
 template<class T>
 void SinglyLinkedList<T>::deleteByIndex(int index) {
+    index += 1;
     if (!head) {
         cout << "List is empty!" << endl;
         return;
