@@ -11,7 +11,7 @@ set(SOURCES
     src/Human.cpp
     src/Entrepreneur.cpp
     src/Application.cpp
-    src/Shutlle.cpp
+    src/Shuttle.cpp
     src/Tourist.cpp
     src/Utilities.cpp
     src/TaxPaymentList.cpp
