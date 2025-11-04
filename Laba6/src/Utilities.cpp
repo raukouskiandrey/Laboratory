@@ -98,3 +98,80 @@ string safeInputWord(const string& prompt) {
     }
     return input;
 }
+
+string safeInputLine(const string& prompt) {
+    string input = readLineTrimmed(prompt);
+    if (input.empty())
+        throw InputValidationError("Input cannot be empty.");
+    return input;
+}
+
+string securelyInputWord(const string& prompt) {
+    while (true) {
+        try {
+            return safeInputWord(prompt);
+        }
+        catch (const InputValidationError& e) {
+            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
+        }
+        catch (const out_of_range& e) {
+            cout << "Value out of range: " << e.what() << ". Please try again.\n";
+        }
+    }
+}
+
+int securelyInputPositiveInt(const string& prompt) {
+    while (true) {
+        try {
+            return safePositiveInputInt(prompt);
+        }
+        catch (const InputValidationError& e) {
+            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
+        }
+        catch (const out_of_range& e) {
+            cout << "Value out of range: " << e.what() << ". Please try again.\n";
+        }
+    }
+}
+
+int securelyInputInt(const string& prompt) {
+    while (true) {
+        try {
+            return safeInputInt(prompt);
+        }
+        catch (const InputValidationError& e) {
+            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
+        }
+        catch (const out_of_range& e) {
+            cout << "Value out of range: " << e.what() << ". Please try again.\n";
+        }
+    }
+}
+
+float securelyInputPositiveFloat(const string& prompt) {
+    while (true) {
+        try {
+            return safePositiveInputFloat(prompt);
+        }
+        catch (const InputValidationError& e) {
+            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
+        }
+        catch (const out_of_range& e) {
+            cout << "Value out of range: " << e.what() << ". Please try again.\n";
+        }
+    }
+}
+
+string securelyInputLine(const string& prompt) {
+    while (true) {
+        try {
+            return safeInputLine(prompt);
+        }
+        catch (const InputValidationError& e) {
+            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
+        }
+        catch (const out_of_range& e) {
+            cout << "Value out of range: " << e.what() << ". Please try again.\n";
+        }
+    }
+}

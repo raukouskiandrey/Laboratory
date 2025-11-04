@@ -52,48 +52,6 @@ void Shuttle::display() const {
     }
 }
 
-static string securelyInputWord(const string& prompt) {
-    while (true) {
-        try {
-            return safeInputWord(prompt);
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
-        }
-    }
-}
-
-static int securelyInputPositiveInt(const string& prompt) {
-    while (true) {
-        try {
-            return safePositiveInputInt(prompt);
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
-        }
-    }
-}
-
-static int securelyInputInt(const string& prompt) {
-    while (true) {
-        try {
-            return safeInputInt(prompt);
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
-        }
-    }
-}
-
 void Shuttle::input() {
     Human::input();
     Entrepreneur::input();
@@ -102,13 +60,13 @@ void Shuttle::input() {
     int count = securelyInputInt("How many purchase addresses do you want to add? ");
 
     for (int i = 0; i < count; ++i) {
-        string address = securelyInputWord("Purchase address " + to_string(i + 1) + ": ");
+        string address = securelyInputLine("Purchase address " + to_string(i + 1) + ": ");
         AddShopAddress(address);
     }
 }
 
 void Shuttle::editShopAddressAdd() {
-    string newAddress = securelyInputWord("Enter new shop address: ");
+    string newAddress = securelyInputLine("Enter new shop address: ");
     AddShopAddress(newAddress);
     cout << "Address added." << endl;
 }
@@ -132,7 +90,7 @@ void Shuttle::editShopAddressDelete() {
                 cout << "Address deleted." << endl;
                 break;
             }
-            catch (InputValidationError& e) {
+            catch (const InputValidationError& e) {
                 cout << "Invalid argument: " << e.what() << ". Please try again.\n";
             }
         }
@@ -145,7 +103,7 @@ void Shuttle::editShopAddresses() {
             << "2 - Delete address" << endl
             << "3 - Return" << endl;
 
-        int subChoice = safeInputInt("Choice: ");
+        int subChoice = securelyInputInt("Choice: ");
 
         switch (subChoice) {
         case 1:

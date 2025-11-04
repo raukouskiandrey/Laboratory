@@ -66,66 +66,10 @@ void Entrepreneur::display() const {
     }
 }
 
-static string securelyInputWord(const string& prompt) {
-    while (true) {
-        try {
-            return safeInputWord(prompt);
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
-        }
-    }
-}
-
-static int securelyInputPositiveInt(const string& prompt) {
-    while (true) {
-        try {
-            return safePositiveInputInt(prompt);
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
-        }
-    }
-}
-
-static int securelyInputInt(const string& prompt) {
-    while (true) {
-        try {
-            return safeInputInt(prompt);
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
-        }
-    }
-}
-
-static int securelyInputPositiveFloat(const string& prompt) {
-    while (true) {
-        try {
-            return safePositiveInputFloat(prompt);
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
-        }
-    }
-}
-
 void Entrepreneur::input() {
     cout << "Enter entrepreneur data:" << endl;
     licenseNumber = securelyInputPositiveInt("Enter license number: ");
-    regAddress = securelyInputWord("Enter registration address: ");
+    regAddress = securelyInputLine("Enter registration address: ");
     taxID = securelyInputPositiveInt("Enter tax ID: ");
 
     while (true) {
@@ -142,7 +86,7 @@ void Entrepreneur::input() {
             }
             break;
         }
-        catch (InputValidationError& e) {
+        catch (const InputValidationError& e) {
             cout << "Invalid argument: " << e.what() << ". Please try again.\n";
         }
     }
@@ -154,7 +98,7 @@ void Entrepreneur::editLicense() {
 }
 
 void Entrepreneur::editRegAddress() {
-    string newAddress = securelyInputWord("Enter new registration address: ");
+    string newAddress = securelyInputLine("Enter new registration address: ");
     setRegAddress(newAddress);
 }
 
@@ -183,7 +127,7 @@ void Entrepreneur::editTaxPaymentEdit() {
                 cout << "Payment updated." << endl;
                 break;
         }
-        catch (InputValidationError& e) {
+        catch (const InputValidationError& e) {
             cout << "Invalid argument: " << e.what() << ". Please try again.\n";
         }
     }
@@ -214,7 +158,7 @@ void Entrepreneur::editTaxPaymentDelete() {
             cout << "Payment deleted." << endl;
             break;
         }
-        catch (InputValidationError& e) {
+        catch (const InputValidationError& e) {
             cout << "Invalid argument: " << e.what() << ". Please try again.\n";
         }
     }

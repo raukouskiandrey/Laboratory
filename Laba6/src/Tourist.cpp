@@ -52,48 +52,6 @@ void Tourist::display() const {
     }
 }
 
-static string securelyInputWord(const string& prompt) {
-    while (true) {
-        try {
-            return safeInputWord(prompt);
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
-        }
-    }
-}
-
-static int securelyInputPositionInt(const string& prompt) {
-    while (true) {
-        try {
-            return safePositiveInputInt(prompt);
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
-        }
-    }
-}
-
-static int securelyInputInt(const string& prompt) {
-    while (true) {
-        try {
-            return safeInputInt(prompt);
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
-        }
-    }
-}
-
 void Tourist::input() {
         cout << "Enter tourist data: " << endl;
         passportData = securelyInputWord("Enter passport data: ");
@@ -107,19 +65,19 @@ void Tourist::input() {
                 for (int i = 0; i < count; ++i) {
                     cout << "Border crossing " << i + 1 << ":\n";
                     string date = securelyInputWord("Date: ");
-                    string country = securelyInputWord("Destination country: ");
+                    string country = securelyInputLine("Destination country: ");
                     AddBorderCross(date, country);
                 }
                 break;
             }
-            catch (InputValidationError& e) {
+            catch (const InputValidationError& e) {
                 cout << "Invalid argument: " << e.what() << ". Please try again.\n";
             }
         }
 }
 
 void Tourist::editPassport() {
-    string newPassport = safeInputWord("Enter new passport data: ");
+    string newPassport = securelyInputWord("Enter new passport data: ");
     setPassportData(newPassport);
 }
 
@@ -132,18 +90,18 @@ void Tourist::editBorderCrossingEdit() {
 
     while (true) {
         try {
-            int crossingNum = securelyInputPositionInt("Enter crossing number to edit: ");
+            int crossingNum = securelyInputPositiveInt("Enter crossing number to edit: ");
             if (crossingNum > borderSize) {
                 throw InputValidationError("Number must be smaller size: '" + to_string(crossingNum) + "'");
             }
                 string date = securelyInputWord("Enter new date: ");
-                string country = securelyInputWord("Enter new destination country: ");
+                string country = securelyInputLine("Enter new destination country: ");
 
                 editBorderCross(crossingNum - 1, date, country);
                 cout << "Crossing updated." << endl;   
                 break;
         }
-        catch (InputValidationError& e) {
+        catch (const InputValidationError& e) {
             cout << "Invalid argument: " << e.what() << ". Please try again.\n";
         }
     }
@@ -151,7 +109,7 @@ void Tourist::editBorderCrossingEdit() {
 
 void Tourist::editBorderCrossingAdd() {
     string date = securelyInputWord("Enter date: ");
-    string country = securelyInputWord("Enter destination country: ");
+    string country = securelyInputLine("Enter destination country: ");
     AddBorderCross(date, country);
     cout << "Border crossing added." << endl;
 }
@@ -165,7 +123,7 @@ void Tourist::editBorderCrossingDelete() {
 
     while (true) {
         try {
-            int crossingNum = securelyInputPositionInt("Enter crossing number to delete: ");
+            int crossingNum = securelyInputPositiveInt("Enter crossing number to delete: ");
             if (crossingNum > borderSize) {
                 throw InputValidationError("Number must be smaller size: '" + to_string(crossingNum) + "'");
             }
@@ -173,7 +131,7 @@ void Tourist::editBorderCrossingDelete() {
             cout << "Crossing deleted." << endl;
             break;
         }
-        catch (InputValidationError& e) {
+        catch (const InputValidationError& e) {
             cout << "Invalid argument: " << e.what() << ". Please try again.\n";
         }
     }
@@ -191,7 +149,6 @@ void Tourist::editBorderCrossings() {
     }
 
     while (true) {
-        try {
             cout << "Choose action:" << endl
                 << "1 - Edit existing crossing" << endl
                 << "2 - Add new crossing" << endl
@@ -215,37 +172,29 @@ void Tourist::editBorderCrossings() {
             default:
                 cout << "Invalid choice." << endl;
             }
-        }
-        catch (InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
     }
 }
 
+
 void Tourist::editTouristDetails() {
     while (true) {
-        try {
-            cout << endl << "Change tourist data: " << endl
-                << "1 - Change passport data" << endl
-                << "2 - Change border crossing data" << endl
-                << "3 - Return" << endl;
+        cout << endl << "Change tourist data: " << endl
+            << "1 - Change passport data" << endl
+            << "2 - Change border crossing data" << endl
+            << "3 - Return" << endl;
 
-            int subChoice = securelyInputInt("Choice: ");
-            switch (subChoice) {
-            case 1:
-                editPassport();
-                break;
-            case 2:
-                editBorderCrossings();
-                break;
-            case 3:
-                return;
-            default:
-                cout << "Invalid choice." << endl;
-            }
-        }
-        catch (InputValidationError& e) {
-                cout << "Invalid argument: " << e.what() << ". Please try again.\n";
+        int subChoice = securelyInputInt("Choice: ");
+        switch (subChoice) {
+        case 1:
+            editPassport();
+            break;
+        case 2:
+            editBorderCrossings();
+            break;
+        case 3:
+            return;
+        default:
+            cout << "Invalid choice." << endl;
         }
     }
 }

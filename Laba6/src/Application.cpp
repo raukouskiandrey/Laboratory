@@ -29,48 +29,6 @@ void App::showMenu() const {
     cout << "5. Exit" << endl;
 }
 
-static string securelyInputWord(const string& prompt) {
-    while (true) {
-        try {
-            return safeInputWord(prompt);
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
-        }
-    }
-}
-
-static int securelyInputPositiveInt(const string& prompt) {
-    while (true) {
-        try {
-            return safePositiveInputInt(prompt);
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
-        }
-    }
-}
-
-static int securelyInputInt(const string& prompt) {
-    while (true) {
-        try {
-            return safeInputInt(prompt);
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
-        }
-    }
-
-}
 void App::addShuttle() {
     cout << "Adding shuttle #" << size + 1 << endl;
 
@@ -238,7 +196,7 @@ void App::deleteShuttle() {
             cout << "Shuttle deleted." << endl;
             break;
         }
-        catch (InputValidationError& e) {
+        catch (const InputValidationError& e) {
             cout << "Invalid argument: " << e.what() << ". Please try again.\n";
         }
     }
@@ -258,7 +216,7 @@ void App::editShuttle() {
             shuttles[number - 1].edit(number);
             break;
         }
-        catch (InputValidationError& e) {
+        catch (const InputValidationError& e) {
                 cout << "Invalid argument: " << e.what() << ". Please try again.\n";
         }
     }
@@ -267,7 +225,6 @@ void App::editShuttle() {
 void App::run() {
     while (true) {
         showMenu();
-        try {
             int choice = securelyInputInt("Choice: ");
             switch (choice) {
             case 1:
@@ -288,10 +245,5 @@ void App::run() {
             default:
                 cout << "Invalid menu item. " << endl;
             }
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << "\nPlease try again.\n";
-        }
-       
     }
 }

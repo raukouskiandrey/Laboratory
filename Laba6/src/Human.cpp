@@ -48,55 +48,14 @@ void Human::display() const {
     cout << "Name: " << name << endl << "Surname: " << surname << endl << "Patronymic: " << patronymic << endl << "Year of birth: " << birthYear << endl;
 }
 
-static string securelyInputWord(const string& prompt) {
-    while (true) {
-        try {
-            return safeInputWord(prompt);
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
-        }
-    }
-}
-
-static int securelyInputInt(const string& prompt) {
-    while (true) {
-        try {
-            return safeInputInt(prompt);
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
-        }
-    }
-}
-
-static int securelyInputPositionInt(const string& prompt) {
-    while (true) {
-        try {
-            return safePositiveInputInt(prompt);
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
-        }
-    }
-}
-
 void Human::input() {
+    name = securelyInputWord("Enter name: ");
+    surname = securelyInputWord("Enter surname: ");
+    patronymic = securelyInputWord("Enter patronymic: ");
+
     while (true) {
         try {
-            name = securelyInputWord("Enter name: ");
-            surname = securelyInputWord("Enter surname: ");
-            patronymic = securelyInputWord("Enter patronymic: ");
-            int year = securelyInputPositionInt("Enter year of birth: ");
+            int year = securelyInputPositiveInt("Enter year of birth: ");
             if (year > getCurrentDate()) {
                 throw InputValidationError("Year cannot be in the future: '" + to_string(year) + "'");
             }
@@ -125,7 +84,7 @@ void Human::editPatronymic() {
 }
 
 void Human::editBirthYear() {
-    int newYear = securelyInputPositionInt("Enter year of birth: ");
+    int newYear = securelyInputPositiveInt("Enter year of birth: ");
     Human::setBirthYear(newYear);
 }
 
@@ -159,7 +118,7 @@ void Human::editHumanDetails() {
                 cout << "Invalid choice." << endl;
             }
         }
-        catch (InputValidationError& e) {
+        catch (const InputValidationError& e) {
             cout << "Invalid argument: " << e.what() << ". Please try again.\n";
         }
     }

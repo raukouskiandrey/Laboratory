@@ -75,6 +75,9 @@ void BorderCrossingList::resizeBorderArray() {
         for (int i = 0; i < size; i++) {
             newBorderCross[i] = borderCross[i];
         }
+    }
+
+    if (borderCross != nullptr) {
         delete[] borderCross;
     }
 

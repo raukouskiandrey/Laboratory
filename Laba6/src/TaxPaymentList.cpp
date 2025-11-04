@@ -71,13 +71,11 @@ void TaxPaymentList::resizeTaxArray() {
     int newCapacity = (capacity == 0) ? 3 : capacity * 2;
     auto newTax = new taxPayment[newCapacity];
 
-    if (tax != nullptr && size > 0) {
-        for (int i = 0; i < size; i++) {
-            newTax[i] = tax[i];
-        }
-        delete[] tax;
+    for (int i = 0; i < size; i++) {
+        newTax[i] = tax[i];
     }
 
+    delete[] tax;  
     tax = newTax;
     capacity = newCapacity;
 }

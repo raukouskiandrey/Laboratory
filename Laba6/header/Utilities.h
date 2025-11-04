@@ -16,3 +16,10 @@ float safeInputFloat(const std::string& prompt);
 float safePositiveInputFloat(const std::string& prompt);
 
 std::string safeInputWord(const std::string& prompt);
+std::string safeInputLine(const std::string& prompt);
+
+std::string securelyInputWord(const std::string& prompt);
+int securelyInputPositiveInt(const std::string& prompt);
+int securelyInputInt(const std::string& prompt);
+float securelyInputPositiveFloat(const std::string& prompt);
+std::string securelyInputLine(const std::string& prompt);
