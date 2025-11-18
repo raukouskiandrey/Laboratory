@@ -4,7 +4,6 @@
 #include "FileReader.h"
 #include <string>
 
-
 void printMenu();
 void run();
 void handleCreateFile(FileReader& fileReader, std::string& filePath);
