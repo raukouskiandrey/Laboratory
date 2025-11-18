@@ -13,7 +13,6 @@ set(SOURCES
     src/Application.cpp
     src/Shuttle.cpp
     src/Tourist.cpp
-    src/Utilities.cpp
     src/TaxPaymentList.cpp
     src/ShopAddressList.cpp
     src/BorderCrossingList.cpp
