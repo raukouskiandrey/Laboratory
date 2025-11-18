@@ -1,8 +1,14 @@
-# Лабораторная работа на тему "Потоки ввода/вывода. Работа с файлами"
+\# Лабораторная работа на тему "Потоки ввода/вывода. Работа с файлами"
 
-## Мое задание
+
+
+\## Мое задание
 
 Реализуйте класс, для которого оператор \[] перегружен, чтобы выполнять чтение символов из указанной позиции файла.
 
-### Ссылка на результат SonarQube Cloud [тут](https://sonarcloud.io/summary/new_code?id=raukouskiandrey_Laboratory&branch=main)
+
+
+&nbsp;
+
+\### Ссылка на результат SonarQube Cloud \[тут](https://sonarcloud.io/summary/new\_code?id=raukouskiandrey\_Laba7\&branch=main)
 
