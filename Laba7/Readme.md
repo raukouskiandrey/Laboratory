@@ -10,5 +10,5 @@
 
  
 
-\### Ссылка на результат SonarQube Cloud \[тут]((https://sonarcloud.io/summary/new\_code?id=raukouskiandrey\_Laba7\&branch=main)
+\### Ссылка на результат SonarQube Cloud \[тут]https://sonarcloud.io/summary/new\_code?id=raukouskiandrey\_Laba7\&branch=main
 
