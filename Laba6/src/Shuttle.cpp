@@ -1,6 +1,7 @@
 #include "Shuttle.h"
 #include "Application.h"
-#include "Utilities.h"
+#include "InputValidationException.h"
+#include "IndexOutOfBoundsException.h"
 #include <iostream>
 using namespace std;
 
@@ -84,14 +85,14 @@ void Shuttle::editShopAddressDelete() {
             try {
                 int addressNum = securelyInputPositiveInt("Enter address number to delete: ");
                 if (addressNum > shopAddresses.getSize()) {
-                    throw InputValidationError("Number must be smaller size : '" + to_string(addressNum) + "'");
+                    throw IndexOutOfBoundsException("Number must be smaller size : '" + to_string(addressNum) + "'");
                 }
                 removeShopAddress(addressNum - 1);
                 cout << "Address deleted." << endl;
                 break;
             }
-            catch (const InputValidationError& e) {
-                cout << "Invalid argument: " << e.what() << ". Please try again.\n";
+            catch (const IndexOutOfBoundsException& e) {
+                cout << "Index out of bounds: " << e.what() << ". Please try again.\n";
             }
         }
 }

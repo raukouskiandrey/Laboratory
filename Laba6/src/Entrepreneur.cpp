@@ -1,6 +1,8 @@
 #include "Entrepreneur.h"
-#include "Utilities.h"
+#include "NegativeNumberException.h"
+#include "IndexOutOfBoundsException.h"
 #include <iostream>
+
 using namespace std;
 
 Entrepreneur::Entrepreneur() = default;
@@ -76,7 +78,7 @@ void Entrepreneur::input() {
         try {
             int count = securelyInputInt("How many tax payments do you want to add? ");
             if (count < 0) {
-                throw InputValidationError("Number of tax payments cannot be negative");
+                throw NegativeNumberException("Number of tax payments cannot be negative");
             }
             for (int i = 0; i < count; ++i) {
                 cout << "Payment " << i + 1 << ":\n";
@@ -86,8 +88,8 @@ void Entrepreneur::input() {
             }
             break;
         }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
+        catch (const NegativeNumberException& e) {
+            cout << "Negative number error: " << e.what() << ". Please try again.\n";
         }
     }
 }
@@ -118,7 +120,7 @@ void Entrepreneur::editTaxPaymentEdit() {
         try {
             int paymentNum = securelyInputPositiveInt("Enter payment number to edit: ");
             if (paymentNum > taxSize) {
-                throw InputValidationError("Number must be smaller size : '" + to_string(paymentNum) + "'");
+                throw IndexOutOfBoundsException("Number must be smaller size : '" + to_string(paymentNum) + "'");
             }
                 string date = securelyInputWord("Enter new date: ");
                 float amount = securelyInputPositiveFloat("Enter new amount: ");
@@ -127,8 +129,8 @@ void Entrepreneur::editTaxPaymentEdit() {
                 cout << "Payment updated." << endl;
                 break;
         }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
+        catch (const IndexOutOfBoundsException& e) {
+            cout << "Index out of bounds: " << e.what() << ". Please try again.\n";
         }
     }
     
@@ -152,14 +154,14 @@ void Entrepreneur::editTaxPaymentDelete() {
         try {
             int paymentNum = securelyInputPositiveInt("Enter payment number to delete: ");
             if (paymentNum > taxSize) {
-                throw InputValidationError("Number must be smaller size : '" + to_string(paymentNum) + "'");
+                throw IndexOutOfBoundsException("Number must be smaller size : '" + to_string(paymentNum) + "'");
             }
             removeTaxPayment(paymentNum - 1);
             cout << "Payment deleted." << endl;
             break;
         }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
+        catch (const IndexOutOfBoundsException& e) {
+            cout << "Index out of bounds: " << e.what() << ". Please try again.\n";
         }
     }
 }

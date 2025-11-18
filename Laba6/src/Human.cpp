@@ -1,5 +1,6 @@
 #include "Human.h"
-#include"Utilities.h"
+#include"InputValidationException.h"
+#include "FutureYearException.h"
 #include <iostream>
 #include <chrono>
 
@@ -57,13 +58,13 @@ void Human::input() {
         try {
             int year = securelyInputPositiveInt("Enter year of birth: ");
             if (year > getCurrentDate()) {
-                throw InputValidationError("Year cannot be in the future: '" + to_string(year) + "'");
+                throw FutureYearException("Year cannot be in the future: '" + to_string(year) + "'");
             }
             birthYear = year;
             break;
         }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
+        catch (const FutureYearException& e) {
+            cout << "Future year error: " << e.what() << ". Please try again.\n";
         }
     }
 }
@@ -90,7 +91,6 @@ void Human::editBirthYear() {
 
 void Human::editHumanDetails() {
     while (true) {
-        try {
             cout << endl << "Change human data: " << endl
                 << "1 - Change name" << endl
                 << "2 - Change surname" << endl
@@ -116,10 +116,6 @@ void Human::editHumanDetails() {
                 return;
             default:
                 cout << "Invalid choice." << endl;
-            }
-        }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
         }
     }
 }

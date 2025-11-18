@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <string>
 
-class InputValidationError :public std::runtime_error {
+class InputValidationException :public std::runtime_error {
 	using std::runtime_error::runtime_error;
 };
 

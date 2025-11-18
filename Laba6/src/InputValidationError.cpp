@@ -1,9 +1,14 @@
-#include "Utilities.h"
 #include <iostream>
 #include <regex>
 #include <ranges>
 #include <sstream>  
 #include <algorithm> 
+
+#include "InputValidationException.h"
+#include"EmptyInputException.h"
+#include"InvalidArgumentException.h"
+#include"OutOfRangeException.h"
+#include"NonPositiveNumberException.h"
 
 using namespace std;
 
@@ -27,27 +32,27 @@ int safeInputInt(const string& prompt) {
     string input = readLineTrimmed(prompt);
 
     if (input.empty()) {
-        throw InputValidationError("Input cannot be empty: '" + input + "'");
+        throw EmptyInputException("Input cannot be empty: '" + input + "'");
     }
 
     if (!regex_match(input, pat)) {
-        throw InputValidationError("Invalid integer input: '" + input + "'");
+        throw InvalidArgumentException("Invalid integer input: '" + input + "'");
     }
     try {
         return stoi(input);
     }
     catch(const invalid_argument& e){
-        throw InputValidationError("Invalid integer input: '" + input + "'");
+        throw InvalidArgumentException("Invalid integer input: '" + input + "'");
     }
     catch(const out_of_range& e){
-        throw InputValidationError("Integer range exceeded: '" + input + "'");
+        throw OutOfRangeException("Integer range exceeded: '" + input + "'");
     }
 }
 
 int safePositiveInputInt(const string& prompt) {
     int number = safeInputInt(prompt);
     if (number <= 0) {
-        throw InputValidationError("The number must be positive.");
+        throw NonPositiveNumberException("The number must be positive.");
     }
     return number;
 }
@@ -59,11 +64,11 @@ float safeInputFloat(const string& prompt) {
         string input = readLineTrimmed(prompt);
 
         if (input.empty()) {
-            throw InputValidationError("Input cannot be empty: '" + input + "'");
+            throw EmptyInputException("Input cannot be empty: '" + input + "'");
         }
 
         if (!regex_match(input, pat)) {
-            throw InputValidationError("Invalid float input: '" + input + "'");
+            throw InvalidArgumentException("Invalid float input: '" + input + "'");
         }
 
             std::replace(input.begin(), input.end(), ',', '.');
@@ -74,7 +79,7 @@ float safeInputFloat(const string& prompt) {
             ss >> value;
 
             if (!ss || !ss.eof()) {
-                throw InputValidationError("Invalid float input: '" + input + "'");
+                throw InvalidArgumentException("Invalid float input: '" + input + "'");
             }
 
             return value;
@@ -84,7 +89,7 @@ float safeInputFloat(const string& prompt) {
 float safePositiveInputFloat(const string& prompt) {
     float number = safeInputFloat(prompt);
     if (number <= 0.0f) {
-    throw InputValidationError("The number must be positive.");
+    throw NonPositiveNumberException("The number must be positive.");
     }
     return number;
 }
@@ -93,8 +98,11 @@ string safeInputWord(const string& prompt) {
     regex pat(R"(^\S+$)");
     string input = readLineTrimmed(prompt);
 
+    if (input.empty()) {
+        throw EmptyInputException("Input cannot be empty: '" + input + "'");
+    }
     if (!regex_match(input, pat)) {
-        throw InputValidationError("Invalid word input: '" + input + "'");
+        throw InvalidArgumentException("Invalid word input: '" + input + "'");
     }
     return input;
 }
@@ -102,7 +110,7 @@ string safeInputWord(const string& prompt) {
 string safeInputLine(const string& prompt) {
     string input = readLineTrimmed(prompt);
     if (input.empty())
-        throw InputValidationError("Input cannot be empty.");
+        throw EmptyInputException("Input cannot be empty.");
     return input;
 }
 
@@ -111,11 +119,11 @@ string securelyInputWord(const string& prompt) {
         try {
             return safeInputWord(prompt);
         }
-        catch (const InputValidationError& e) {
+        catch (const InvalidArgumentException& e) {
             cout << "Invalid argument: " << e.what() << ". Please try again.\n";
         }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
+        catch (const EmptyInputException& e) {
+            cout << "Empty Input: " << e.what() << ". Please try again.\n";
         }
     }
 }
@@ -125,11 +133,17 @@ int securelyInputPositiveInt(const string& prompt) {
         try {
             return safePositiveInputInt(prompt);
         }
-        catch (const InputValidationError& e) {
+        catch (const InvalidArgumentException& e) {
             cout << "Invalid argument: " << e.what() << ". Please try again.\n";
         }
-        catch (const out_of_range& e) {
+        catch (const OutOfRangeException& e) {
             cout << "Value out of range: " << e.what() << ". Please try again.\n";
+        }
+        catch (const EmptyInputException& e) {
+            cout << "Empty input: " << e.what() << ". Please try again.\n";
+        }
+        catch (const NonPositiveNumberException& e) {
+            cout << "Non-positive number: " << e.what() << ". Please try again.\n";
         }
     }
 }
@@ -139,11 +153,14 @@ int securelyInputInt(const string& prompt) {
         try {
             return safeInputInt(prompt);
         }
-        catch (const InputValidationError& e) {
+        catch (const InvalidArgumentException& e) {
             cout << "Invalid argument: " << e.what() << ". Please try again.\n";
         }
-        catch (const out_of_range& e) {
+        catch (const OutOfRangeException& e) {
             cout << "Value out of range: " << e.what() << ". Please try again.\n";
+        }
+        catch (const EmptyInputException& e) {
+            cout << "Empty input: " << e.what() << ". Please try again.\n";
         }
     }
 }
@@ -153,11 +170,17 @@ float securelyInputPositiveFloat(const string& prompt) {
         try {
             return safePositiveInputFloat(prompt);
         }
-        catch (const InputValidationError& e) {
+        catch (const InvalidArgumentException& e) {
             cout << "Invalid argument: " << e.what() << ". Please try again.\n";
         }
-        catch (const out_of_range& e) {
+        catch (const OutOfRangeException& e) {
             cout << "Value out of range: " << e.what() << ". Please try again.\n";
+        }
+        catch (const EmptyInputException& e) {
+            cout << "Empty input" << e.what() << ". Please try again.\n";
+        }
+        catch (const NonPositiveNumberException& e) {
+            cout << "No positive number: " << e.what() << ". Please try again.\n";
         }
     }
 }
@@ -167,11 +190,8 @@ string securelyInputLine(const string& prompt) {
         try {
             return safeInputLine(prompt);
         }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
-        }
-        catch (const out_of_range& e) {
-            cout << "Value out of range: " << e.what() << ". Please try again.\n";
+        catch (const EmptyInputException& e) {
+            cout << "Empty Input: " << e.what() << ". Please try again.\n";
         }
     }
 }

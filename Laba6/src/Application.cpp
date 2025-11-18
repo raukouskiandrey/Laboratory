@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "Utilities.h"
+#include "IndexOutOfBoundsException.h"
 #include <iostream>
 using namespace std;
 
@@ -187,17 +187,17 @@ void App::deleteShuttle() {
         try {
             int number = securelyInputPositiveInt("Enter shuttle number to delete: ");
             if (number > size) {
-                throw InputValidationError("Number must be smaller size: '" + to_string(number) + "'");
+                throw IndexOutOfBoundsException("Number must be smaller size: '" + to_string(number) + "'");
             }
             for (int i = number - 1; i < size - 1; ++i) {
                 shuttles[i] = shuttles[i + 1];
             }
             --size;
             cout << "Shuttle deleted." << endl;
-            break;
+            break; 
         }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
+        catch (const IndexOutOfBoundsException& e) {
+            cout << "Index out of bounds: " << e.what() << ". Please try again.\n";
         }
     }
 }
@@ -211,13 +211,13 @@ void App::editShuttle() {
         try {
             int number = securelyInputPositiveInt("Enter shuttle number to edit: ");
             if (number > size) {
-                throw InputValidationError("Number must be smaller size: '" + to_string(number) + "'");
+                throw IndexOutOfBoundsException("Number must be smaller size: '" + to_string(number) + "'");
             }
             shuttles[number - 1].edit(number);
             break;
         }
-        catch (const InputValidationError& e) {
-                cout << "Invalid argument: " << e.what() << ". Please try again.\n";
+        catch (const IndexOutOfBoundsException& e) {
+            cout << "Index out of bounds: " << e.what() << ". Please try again.\n";
         }
     }
 }

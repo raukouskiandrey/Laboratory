@@ -1,5 +1,7 @@
 #include "Tourist.h"
-#include "Utilities.h"
+#include "InputValidationException.h"
+#include "NegativeNumberException.h"
+#include "IndexOutOfBoundsException.h"
 #include <iostream>
 using namespace std;
 
@@ -60,7 +62,7 @@ void Tourist::input() {
             try {
                 int count = securelyInputInt("How many border crossings do you want to add? ");
                 if (count < 0) {
-                    throw InputValidationError("Number of border crossings cannot be negative");
+                    throw NegativeNumberException("Number of border crossings cannot be negative");
                 }
                 for (int i = 0; i < count; ++i) {
                     cout << "Border crossing " << i + 1 << ":\n";
@@ -70,8 +72,8 @@ void Tourist::input() {
                 }
                 break;
             }
-            catch (const InputValidationError& e) {
-                cout << "Invalid argument: " << e.what() << ". Please try again.\n";
+            catch (const NegativeNumberException& e) {
+                cout << "Negative number error: " << e.what() << ". Please try again.\n";
             }
         }
 }
@@ -92,7 +94,7 @@ void Tourist::editBorderCrossingEdit() {
         try {
             int crossingNum = securelyInputPositiveInt("Enter crossing number to edit: ");
             if (crossingNum > borderSize) {
-                throw InputValidationError("Number must be smaller size: '" + to_string(crossingNum) + "'");
+                throw IndexOutOfBoundsException("Number must be smaller size: '" + to_string(crossingNum) + "'");
             }
                 string date = securelyInputWord("Enter new date: ");
                 string country = securelyInputLine("Enter new destination country: ");
@@ -101,8 +103,8 @@ void Tourist::editBorderCrossingEdit() {
                 cout << "Crossing updated." << endl;   
                 break;
         }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
+        catch (const IndexOutOfBoundsException& e) {
+            cout << "Index out of bounds: " << e.what() << ". Please try again.\n";
         }
     }
 }
@@ -125,14 +127,14 @@ void Tourist::editBorderCrossingDelete() {
         try {
             int crossingNum = securelyInputPositiveInt("Enter crossing number to delete: ");
             if (crossingNum > borderSize) {
-                throw InputValidationError("Number must be smaller size: '" + to_string(crossingNum) + "'");
+                throw IndexOutOfBoundsException("Number must be smaller size: '" + to_string(crossingNum) + "'");
             }
             removeBorderCross(crossingNum - 1);
             cout << "Crossing deleted." << endl;
             break;
         }
-        catch (const InputValidationError& e) {
-            cout << "Invalid argument: " << e.what() << ". Please try again.\n";
+        catch (const IndexOutOfBoundsException& e) {
+            cout << "Index out of bounds: " << e.what() << ". Please try again.\n";
         }
     }
 }
@@ -174,7 +176,6 @@ void Tourist::editBorderCrossings() {
             }
     }
 }
-
 
 void Tourist::editTouristDetails() {
     while (true) {
