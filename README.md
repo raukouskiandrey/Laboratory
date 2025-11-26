@@ -6,5 +6,4 @@
 ## 5.[Лабораторная работа на тему "Шаблоны функций и классов"](https://github.com/raukouskiandrey/Laboratory/tree/main/Laba5)
 ## 6.[Лабораторная работа на тему "Генерация и обработка исключительных ситуаций"](https://github.com/raukouskiandrey/Laboratory/tree/main/Laba6)
 ## 7.[Лабораторная работа на тему "Потоки ввода/вывода. Работа с файлами"](https://github.com/raukouskiandrey/Laboratory/tree/main/Laba7)
-## 7.[Лабораторная работа на тему "Классы контейнеры-итераторы. 
-STL-контейнеры"](https://github.com/raukouskiandrey/Laboratory/tree/main/Laba8)
+## 8.[Лабораторная работа на тему "Классы контейнеры-итераторы. STL-контейнеры"](https://github.com/raukouskiandrey/Laboratory/tree/main/Laba8)
