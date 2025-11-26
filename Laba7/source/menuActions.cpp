@@ -161,7 +161,7 @@ void run() {
     while (true) {
         printMenu();
         choice = safeInputInt("Select action: ");
-
+        
         switch (choice) {
         case 1:
             handleCreateFile(fileReader, filePath);

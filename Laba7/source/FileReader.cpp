@@ -92,7 +92,7 @@ char FileReader::operator[](size_t position) {
     try {
         file.seekg(position, std::ios::beg);
 
-        if (file.fail() || file.eof()) {
+        if (file.fail()) {
             throw std::out_of_range(std::format("Index out of file range ({} >= {})", position, getFileSize()));
         }
 
