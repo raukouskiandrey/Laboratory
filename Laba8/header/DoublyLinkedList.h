@@ -29,10 +29,10 @@ public:
     Iterator begin() const;
     Iterator end() const;
 
-    void push_back(const t value);
-    void pop_back();
-    void push_front(const t value);
-    void pop_front();
+    void pushBack(const t value);
+    void popBack();
+    void pushFront(const t value);
+    void popFront();
     t front() const;
     t back() const;
     void clear();

@@ -69,3 +69,4 @@ float safeInputFloat(const string& prompt) {
         }
     }
 }
+

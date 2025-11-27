@@ -5,6 +5,5 @@ int main() {
     setlocale(LC_ALL,"rus");
 
     createList();
-
     return 0;
 }

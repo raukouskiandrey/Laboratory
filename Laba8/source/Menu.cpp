@@ -58,9 +58,8 @@ void createList() {
         cout << "2. float" << endl;
         cout << "3. string" << endl;
         cout << "4. char" << endl;
-        cout << "Выберите тип: ";
 
-        cin >> typeChoice;
+        typeChoice = safeInputInt("Выберите тип: ");
 
         switch (typeChoice) {
         case 1:
@@ -94,24 +93,25 @@ void runMenu() {
 
     while (true) {
         showMenu();
-        cout << "Выберите: ";
-        cin >> choice;
+        
+        choice = safeInputInt("Выберите: ");
 
             switch (choice) {
             case 1:
                 list.clear();
                 cout << "Список очищен. Создайте новый список." << endl;
+                createList();
                 break;
             case 2:
                 cout << "Введите данные: ";
                 readValue(value);
-                list.push_front(value);
+                list.pushFront(value);
                 cout << "Элемент добавлен в начало." << endl;
                 break;
             case 3:
                 cout << "Введите данные: ";
                 readValue(value);
-                list.push_back(value);
+                list.pushBack(value);
                 cout << "Элемент добавлен в конец." << endl;
                 break;
             case 4:
@@ -119,7 +119,7 @@ void runMenu() {
                     cout << "Список пустой! Нечего удалять." << endl;
                 }
                 else {
-                    list.pop_front();
+                    list.popFront();
                     cout << "Первый элемент удален." << endl;
                 }
                 break;
@@ -128,7 +128,7 @@ void runMenu() {
                     cout << "Список пустой! Нечего удалять." << endl;
                 }
                 else {
-                    list.pop_back();
+                    list.popBack();
                     cout << "Последний элемент удален." << endl;
                 }
                 break;

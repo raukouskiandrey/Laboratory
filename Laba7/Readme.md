@@ -10,7 +10,7 @@
 
  
 
-### Ссылка на результат SonarQube Cloud [тут](https://sonarcloud.io/summary/new\_code?id=raukouskiandrey\_Laboratory\&branch=main)
+### Ссылка на результат SonarQube Cloud [тут](https://sonarcloud.io/summary/new_code?id=raukouskiandrey_Laba7&branch=main)
 
 
 

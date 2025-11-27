@@ -11,7 +11,7 @@ DoublyLinkedList<t>::DoublyLinkedList(const DoublyLinkedList& other) {
 	Node<t>* current = other.head;
 
 	while (current) {
-		push_back(current->data);
+		pushBack(current->data);
 		current = current->next;
 	}
 }	
@@ -22,7 +22,7 @@ DoublyLinkedList<t>& DoublyLinkedList<t>::operator=(const DoublyLinkedList<t>& o
 		clear();
 		auto head = other.head;
 		while (head) {
-			push_back(head->data);
+			pushBack(head->data);
 			head = head->next;
 		}
 	}
@@ -47,7 +47,7 @@ bool DoublyLinkedList<t>::empty() const {
 }
 
 template<typename t>
-void DoublyLinkedList<t>::push_back(const t value) {
+void DoublyLinkedList<t>::pushBack(const t value) {
 	auto newNode = new Node<t>(value);
 
 	if (empty()) {
@@ -62,7 +62,7 @@ void DoublyLinkedList<t>::push_back(const t value) {
 }
 
 template<typename t>
-void DoublyLinkedList<t>::pop_back() {
+void DoublyLinkedList<t>::popBack() {
 	if (empty()) {
 		std::cout << "Список пустой!!!!";
 		return;
@@ -82,7 +82,7 @@ void DoublyLinkedList<t>::pop_back() {
 }
 
 template<typename t>
-void DoublyLinkedList<t>::push_front(const t value) {
+void DoublyLinkedList<t>::pushFront(const t value) {
 		auto newNode =new Node<t>(value);
 
 		if (empty()) {
@@ -97,7 +97,7 @@ void DoublyLinkedList<t>::push_front(const t value) {
 	}
 
 template<typename t>
-void DoublyLinkedList<t>::pop_front() {
+void DoublyLinkedList<t>::popFront() {
 	if (empty()) {
 		std::cout << "Список пустой!!!!";
 		return;
