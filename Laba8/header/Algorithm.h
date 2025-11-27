@@ -8,7 +8,7 @@ private:
     Node<t>* merge(Node<t>* left, Node<t>* right);
     Node<t>* findMiddle(Node<t>* head);
 public:
-    bool find(const DoublyLinkedList<t>& list, const t& value);
+    bool find(const DoublyLinkedList<t>& list, const t& value) const;
     void sort(DoublyLinkedList<t>& list);
 
 };

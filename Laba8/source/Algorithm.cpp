@@ -1,7 +1,7 @@
 #include"Algorithm.h"
 
 template <typename t>
-bool Algorithm<t>::find(const DoublyLinkedList<t>& list, const t& value) {
+bool Algorithm<t>::find(const DoublyLinkedList<t>& list, const t& value) const{
     auto end = list.end();
     for (auto it = list.begin(); it != end; ++it) {
         if (*it == value) return true;
