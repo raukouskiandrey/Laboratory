@@ -30,15 +30,14 @@ void handleCreateFile(FileReader& fileReader, string& filePath) {
 
         if (result == 1) {
             cout << "File opened successfully: " << filePath << std::endl;
-            break;
         }
         else if (result == 2) {
             cout << "File created successfully: " << filePath << std::endl;
-            break;
         }
         else {
             cout << "Runtime error: Failed to open or create file" << std::endl;
         }
+        break;
     }
 }
 
