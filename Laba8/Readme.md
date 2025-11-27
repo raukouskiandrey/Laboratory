@@ -7,7 +7,7 @@
 Реализовать классы контейнера и итератора для работы с двухсвязным списком. Реализовать класс алгоритма, в котором определить методы  поиска и сортировки списка. Выполнить программу.
 
  
-### Ссылка на результат SonarQube Cloud [тут](https://sonarcloud.io/summary/new\_code?id=raukouskiandrey\_Laboratory\&branch=main)
+### Ссылка на результат SonarQube Cloud [тут](https://sonarcloud.io/summary/overall?id=raukouskiandrey_Laba8&branch=main)
 
 
 
