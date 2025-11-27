@@ -109,14 +109,14 @@ char FileReader::operator[](size_t position) {
         file.seekg(currentPos);
         return '\0';
     }
-    catch (const std::runtime_error& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+    catch (const std::ios_base::failure& e) {
+        std::cerr << "File access error: " << e.what() << std::endl;
         file.clear();
         file.seekg(currentPos);
         return '\0';
     }
-    catch (const std::ios_base::failure& e) {
-        std::cerr << "File access error: " << e.what() << std::endl;
+    catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
         file.clear();
         file.seekg(currentPos);
         return '\0';

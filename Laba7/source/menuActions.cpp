@@ -18,71 +18,56 @@ void printMenu() {
 
 void handleCreateFile(FileReader& fileReader, string& filePath) {
     while (true) {
-        try {
-            cout << "Enter file path: ";
-            string inputPath;
-            getline(std::cin, inputPath);
-            trimInplace(inputPath);
+        string inputPath = readLineTrimmed("Enter file path: ");
 
-            if (!inputPath.empty()) {
-                filePath = inputPath;
-            }
-            else {
-                throw invalid_argument("File path cannot be empty");
-            }
-
-            int result = fileReader.openFile(filePath);
-
-            if (result == 1) {
-                cout << "File opened successfully: " << filePath << std::endl;
-                break;
-            }
-            else if (result == 2) {
-                cout << "File created successfully: " << filePath << std::endl;
-                break;
-            }
-            else {
-                throw runtime_error("Failed to open or create file");
-            }
+        if (inputPath.empty()) {
+            cout << "Input error: File path cannot be empty" << std::endl;
+            continue;
         }
-        catch (const runtime_error& e) {
-            cout << "Runtime error: " << e.what() << std::endl;
+
+        filePath = inputPath;
+        int result = fileReader.openFile(filePath);
+
+        if (result == 1) {
+            cout << "File opened successfully: " << filePath << std::endl;
+            break;
         }
-        catch (const invalid_argument& e) {
-            cout << "Input error: " << e.what() << std::endl;
+        else if (result == 2) {
+            cout << "File created successfully: " << filePath << std::endl;
+            break;
+        }
+        else {
+            cout << "Runtime error: Failed to open or create file" << std::endl;
         }
     }
 }
 
 void handleWriteString(FileReader& fileReader) {
-    while (true) {
-        try {
-            if (!fileReader.isFileOpen()) {
-                throw std::runtime_error("First open the file (option 1)!");
-            }
-
-            std::cout << "Enter string to write to file: ";
-            std::string text;
-            std::getline(std::cin, text);
-
-            if (text.empty()) {
-                throw std::invalid_argument("Cannot write empty string");
-            }
-
-            if (fileReader.writeString(text)) {
-                std::cout << "String successfully written to file!" << std::endl;
-                break;
-            }
-            else {
-                throw std::runtime_error("Error writing to file");
-            }
+    try {
+        if (!fileReader.isFileOpen()) {
+            throw std::runtime_error("First open the file (option 1)!");
         }
-        catch (const std::runtime_error& e) {
-            std::cout << "Error: " << e.what() << std::endl;
+
+        std::cout << "Enter string to write to file: ";
+        std::string text;
+        std::getline(std::cin, text);
+
+        if (text.empty()) {
+            throw std::invalid_argument("Cannot write empty string");
         }
-        catch (const std::invalid_argument& e) {
-            std::cout << "Input error: " << e.what() << std::endl;
+
+        if (fileReader.writeString(text)) {
+            std::cout << "String successfully written to file!" << std::endl;
         }
+        else {
+            throw std::runtime_error("Error writing to file");
+        }
+    }
+    catch (const std::runtime_error& e) {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
+    catch (const std::invalid_argument& e) {
+        std::cout << "Input error: " << e.what() << std::endl;
     }
 }
 
@@ -161,7 +146,7 @@ void run() {
     while (true) {
         printMenu();
         choice = safeInputInt("Select action: ");
-        
+
         switch (choice) {
         case 1:
             handleCreateFile(fileReader, filePath);
