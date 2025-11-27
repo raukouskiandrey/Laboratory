@@ -14,10 +14,10 @@ DoublyLinkedList<t>::DoublyLinkedList(const DoublyLinkedList& other) {
 		pushBack(current->data);
 		current = current->next;
 	}
-}	
+}
 
 template<typename t>
-DoublyLinkedList<t>& DoublyLinkedList<t>::operator=(const DoublyLinkedList<t>& other){
+DoublyLinkedList<t>& DoublyLinkedList<t>::operator=(const DoublyLinkedList<t>& other) {
 	if (this != &other) {
 		clear();
 		auto head = other.head;
@@ -64,15 +64,15 @@ void DoublyLinkedList<t>::pushBack(const t value) {
 template<typename t>
 void DoublyLinkedList<t>::popBack() {
 	if (empty()) {
-		std::cout << "Список пустой!!!!";
+		std::cout << "List is empty!!!!";
 		return;
 	}
 	if (head == tail) {
 		delete tail;
-		head = nullptr;  
+		head = nullptr;
 		tail = nullptr;
 	}
-	else{
+	else {
 		Node<t>* newTail = tail->prev;
 		newTail->next = nullptr;
 		delete tail;
@@ -83,23 +83,23 @@ void DoublyLinkedList<t>::popBack() {
 
 template<typename t>
 void DoublyLinkedList<t>::pushFront(const t value) {
-		auto newNode =new Node<t>(value);
+	auto newNode = new Node<t>(value);
 
-		if (empty()) {
-			head = tail = newNode;
-		}
-		else {
-			newNode->next = head;
-			head->prev = newNode;
-			head = newNode;
-		}
-		++size;
+	if (empty()) {
+		head = tail = newNode;
 	}
+	else {
+		newNode->next = head;
+		head->prev = newNode;
+		head = newNode;
+	}
+	++size;
+}
 
 template<typename t>
 void DoublyLinkedList<t>::popFront() {
 	if (empty()) {
-		std::cout << "Список пустой!!!!";
+		std::cout << "List is empty!!!!";
 		return;
 	}
 
@@ -120,7 +120,7 @@ void DoublyLinkedList<t>::popFront() {
 template<typename t>
 t DoublyLinkedList<t>::back() const {
 	if (empty()) {
-		throw std::runtime_error("Список пустой");
+		throw std::runtime_error("List is empty");
 	}
 	else {
 		return tail->data;
@@ -128,9 +128,9 @@ t DoublyLinkedList<t>::back() const {
 }
 
 template<typename t>
-t DoublyLinkedList<t>::front() const{
+t DoublyLinkedList<t>::front() const {
 	if (empty()) {
-		throw std::runtime_error("Список пустой");
+		throw std::runtime_error("List is empty");
 	}
 	else {
 		return head->data;
@@ -138,7 +138,7 @@ t DoublyLinkedList<t>::front() const{
 }
 
 template<typename t>
-typename DoublyLinkedList<t>::Iterator& DoublyLinkedList<t>::Iterator::operator++(){
+typename DoublyLinkedList<t>::Iterator& DoublyLinkedList<t>::Iterator::operator++() {
 	if (current) {
 		current = current->next;
 	}
@@ -156,10 +156,10 @@ typename DoublyLinkedList<t>::Iterator& DoublyLinkedList<t>::Iterator::operator-
 template<typename t>
 t& DoublyLinkedList<t>::Iterator::operator*() {
 	if (!current) {
-		throw std::runtime_error("Разыменование конечного оператора");
+		throw std::runtime_error("Attempting to dereference an invalid iterator");
 	}
 	else {
-		return current->data;	
+		return current->data;
 	}
 }
 
@@ -169,18 +169,18 @@ bool DoublyLinkedList<t>::Iterator::operator!=(const DoublyLinkedList<t>::Iterat
 }
 
 template<typename t>
-typename DoublyLinkedList<t>::Iterator DoublyLinkedList<t>::begin() const{
+typename DoublyLinkedList<t>::Iterator DoublyLinkedList<t>::begin() const {
 	return Iterator(head);
 }
 
 template<typename t>
-typename DoublyLinkedList<t>::Iterator DoublyLinkedList<t>::end() const{
+typename DoublyLinkedList<t>::Iterator DoublyLinkedList<t>::end() const {
 	return Iterator(nullptr);
 }
 
 template<typename t>
-size_t DoublyLinkedList<t>::getSize() const { 
-	return size; 
+size_t DoublyLinkedList<t>::getSize() const {
+	return size;
 }
 
 template<typename t>
@@ -201,14 +201,13 @@ void DoublyLinkedList<t>::setHead(Node<t>* newHead) {
 		size = 0;
 		return;
 	}
-	head->prev = nullptr; 
+	head->prev = nullptr;
 }
 
 template<typename t>
 void DoublyLinkedList<t>::setTail(Node<t>* newTail) {
 	tail = newTail;
 	if (tail) {
-		tail->next = nullptr; 
+		tail->next = nullptr;
 	}
 }
-

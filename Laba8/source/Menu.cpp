@@ -36,16 +36,16 @@ void readValue(char& val) {
 
 void showMenu() {
     cout << "Menu :" << endl;
-    cout << "1. Создать новый список" << endl;
-    cout << "2. Добавить в начало" << endl;
-    cout << "3. Добавить в конец" << endl;
-    cout << "4. Удалить начальный элемент" << endl;
-    cout << "5. Удалить последний элемент" << endl;
-    cout << "6. Поиск" << endl;
-    cout << "7. Сортировка" << endl;
-    cout << "8. Показать весь список" << endl;
-    cout << "9. Удалить весь список" << endl;
-    cout << "10. Выход" << endl;
+    cout << "1. Create a new list" << endl;
+    cout << "2. Add to the beginning" << endl;
+    cout << "3. Add to the end" << endl;
+    cout << "4. Delete the first element" << endl;
+    cout << "5. Delete the last element" << endl;
+    cout << "6. Search" << endl;
+    cout << "7. Sort" << endl;
+    cout << "8. Show the entire list" << endl;
+    cout << "9. Delete the entire list" << endl;
+    cout << "10. Exit" << endl;
 }
 
 void createList() {
@@ -53,13 +53,13 @@ void createList() {
     bool validChoice = false;
 
     do {
-        cout << "Типы:" << endl;
+        cout << "Types:" << endl;
         cout << "1. int" << endl;
         cout << "2. float" << endl;
         cout << "3. string" << endl;
         cout << "4. char" << endl;
 
-        typeChoice = safeInputInt("Выберите тип: ");
+        typeChoice = safeInputInt("Select type: ");
 
         switch (typeChoice) {
         case 1:
@@ -79,7 +79,7 @@ void createList() {
             validChoice = true;
             break;
         default:
-            cout << "Неверный выбор! Пожалуйста, выберите от 1 до 4." << endl;
+            cout << "Invalid choice! Please select from 1 to 4." << endl;
         }
     } while (!validChoice);
 }
@@ -93,98 +93,98 @@ void runMenu() {
 
     while (true) {
         showMenu();
-        
-        choice = safeInputInt("Выберите: ");
 
-            switch (choice) {
-            case 1:
-                list.clear();
-                cout << "Список очищен. Создайте новый список." << endl;
-                createList();
-                break;
-            case 2:
-                cout << "Введите данные: ";
-                readValue(value);
-                list.pushFront(value);
-                cout << "Элемент добавлен в начало." << endl;
-                break;
-            case 3:
-                cout << "Введите данные: ";
-                readValue(value);
-                list.pushBack(value);
-                cout << "Элемент добавлен в конец." << endl;
-                break;
-            case 4:
-                if (list.empty()) {
-                    cout << "Список пустой! Нечего удалять." << endl;
-                }
-                else {
-                    list.popFront();
-                    cout << "Первый элемент удален." << endl;
-                }
-                break;
-            case 5:
-                if (list.empty()) {
-                    cout << "Список пустой! Нечего удалять." << endl;
-                }
-                else {
-                    list.popBack();
-                    cout << "Последний элемент удален." << endl;
-                }
-                break;
-            case 6:
-                if (list.empty()) {
-                    cout << "Список пустой! Нечего искать." << endl;
-                }
-                else {
-                    cout << "Введите данные для поиска: ";
-                    readValue(value);
-                    if (algo.find(list, value)) {
-                        cout << "Значение найдено в списке." << endl;
-                    }
-                    else {
-                        cout << "Не найдено." << endl;
-                    }
-                }
-                break;
-            case 7:
-                if (list.empty()) {
-                    cout << "Список пустой! Нечего сортировать." << endl;
-                }
-                else if (list.getSize() == 1) {
-                    cout << "В списке только один элемент - сортировка не требуется." << endl;
-                }
-                else {
-                    algo.sort(list);
-                    cout << "Список отсортирован." << endl;
-                }
-                break;
-            case 8:
-                if (list.empty()) {
-                    cout << "Список пустой!" << endl;
-                }
-                else {
-                    cout << "Содержимое списка:" << endl;
-                    for (auto it = list.begin(); it != list.end(); ++it) {
-                        cout << *it << " ";
-                    }
-                    cout << endl;
-                }
-                break;
-            case 9:
-                if (list.empty()) {
-                    cout << "Список уже пустой!" << endl;
-                }
-                else {
-                    list.clear();
-                    cout << "Список удален." << endl;
-                }
-                break;
-            case 10:
-                cout << "Выход." << endl;
-                return;
-            default:
-                cout << "Неверный выбор! Пожалуйста, выберите от 1 до 10." << endl;
+        choice = safeInputInt("Select: ");
+
+        switch (choice) {
+        case 1:
+            list.clear();
+            cout << "List cleared. Create a new list." << endl;
+            createList();
+            break;
+        case 2:
+            cout << "Enter data: ";
+            readValue(value);
+            list.pushFront(value);
+            cout << "Element added to the beginning." << endl;
+            break;
+        case 3:
+            cout << "Enter data: ";
+            readValue(value);
+            list.pushBack(value);
+            cout << "Element added to the end." << endl;
+            break;
+        case 4:
+            if (list.empty()) {
+                cout << "List is empty! Nothing to delete." << endl;
             }
+            else {
+                list.popFront();
+                cout << "First element deleted." << endl;
+            }
+            break;
+        case 5:
+            if (list.empty()) {
+                cout << "List is empty! Nothing to delete." << endl;
+            }
+            else {
+                list.popBack();
+                cout << "Last element deleted." << endl;
+            }
+            break;
+        case 6:
+            if (list.empty()) {
+                cout << "List is empty! Nothing to search for." << endl;
+            }
+            else {
+                cout << "Enter data to search for: ";
+                readValue(value);
+                if (algo.find(list, value)) {
+                    cout << "Value found in the list." << endl;
+                }
+                else {
+                    cout << "Not found." << endl;
+                }
+            }
+            break;
+        case 7:
+            if (list.empty()) {
+                cout << "List is empty! Nothing to sort." << endl;
+            }
+            else if (list.getSize() == 1) {
+                cout << "The list has only one element - sorting is not required." << endl;
+            }
+            else {
+                algo.sort(list);
+                cout << "List sorted." << endl;
+            }
+            break;
+        case 8:
+            if (list.empty()) {
+                cout << "List is empty!" << endl;
+            }
+            else {
+                cout << "List contents:" << endl;
+                for (auto it = list.begin(); it != list.end(); ++it) {
+                    cout << *it << " ";
+                }
+                cout << endl;
+            }
+            break;
+        case 9:
+            if (list.empty()) {
+                cout << "List is already empty!" << endl;
+            }
+            else {
+                list.clear();
+                cout << "List deleted." << endl;
+            }
+            break;
+        case 10:
+            cout << "Exit." << endl;
+            return;
+        default:
+            cout << "Invalid choice! Please select from 1 to 10." << endl;
+        }
     }
 }
