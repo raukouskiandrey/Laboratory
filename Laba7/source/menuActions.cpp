@@ -17,9 +17,9 @@ void printMenu() {
 }
 
 void handleCreateFile(FileReader& fileReader, string& filePath) {
-    while (true) {
+    bool success = false;
+    while (!success) {
         string inputPath = readLineTrimmed("Enter file path: ");
-
         if (inputPath.empty()) {
             cout << "Input error: File path cannot be empty" << std::endl;
             continue;
@@ -30,18 +30,17 @@ void handleCreateFile(FileReader& fileReader, string& filePath) {
 
         if (result == 1) {
             cout << "File opened successfully: " << filePath << std::endl;
-            break;
+            success = true;
         }
         else if (result == 2) {
             cout << "File created successfully: " << filePath << std::endl;
-            break;
+            success = true;
         }
         else {
             cout << "Runtime error: Failed to open or create file" << std::endl;
         }
     }
 }
-
 void handleWriteString(FileReader& fileReader) {
     try {
         if (!fileReader.isFileOpen()) {
