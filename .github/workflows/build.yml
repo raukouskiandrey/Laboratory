@@ -24,6 +24,7 @@ jobs:
       - name: Install Build Wrapper
         uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v6
 
+      # --- Laba7 ---
       - name: Build Laba7
         run: |
           rm -rf Laba7/build
@@ -41,5 +42,26 @@ jobs:
             -Dsonar.organization=${{ env.SONAR_ORG }}
             -Dsonar.sources=Laba7
             -Dsonar.cfamily.compile-commands=Laba7/build_wrapper/compile_commands.json
+            -Dsonar.coverage.exclusions=**
+            -Dsonar.cfamily.skipCoverage=true
+
+      # --- Laba8 ---
+      - name: Build Laba8
+        run: |
+          rm -rf Laba8/build
+          mkdir Laba8/build
+          cmake -S Laba8 -B Laba8/build
+          build-wrapper-linux-x86-64 --out-dir Laba8/build_wrapper make -C Laba8/build
+
+      - name: SonarCloud scan Laba8
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=raukouskiandrey_Laba8
+            -Dsonar.organization=${{ env.SONAR_ORG }}
+            -Dsonar.sources=Laba8
+            -Dsonar.cfamily.compile-commands=Laba8/build_wrapper/compile_commands.json
             -Dsonar.coverage.exclusions=**
             -Dsonar.cfamily.skipCoverage=true
