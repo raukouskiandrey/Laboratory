@@ -115,12 +115,7 @@ char FileReader::operator[](size_t position) {
         file.seekg(currentPos);
         return '\0';
     }
-    catch (const std::runtime_error& e) {
-        std::cerr << "Runtime error: " << e.what() << std::endl;
-        file.clear();
-        file.seekg(currentPos);
-        return '\0';
-    }
+
 }
 
 size_t FileReader::getFileSize() {
