@@ -43,47 +43,33 @@ void showMenu() {
     cout << "5. Delete the last element" << endl;
     cout << "6. Search" << endl;
     cout << "7. Sort" << endl;
-    cout << "8. Show the entire list" << endl;
-    cout << "9. Delete the entire list" << endl;
+    cout << "8. Show the list" << endl;
+    cout << "9. Clear the list" << endl;
     cout << "10. Exit" << endl;
 }
 
 void createList() {
-    int typeChoice;
-    bool validChoice = false;
-
-    do {
+    while (true) {
         cout << "Types:" << endl;
         cout << "1. int" << endl;
         cout << "2. float" << endl;
         cout << "3. string" << endl;
         cout << "4. char" << endl;
+        cout << "5. Exit program" << endl;
 
-        typeChoice = safeInputInt("Select type: ");
+        int typeChoice = safeInputInt("Select type: ");
 
         switch (typeChoice) {
-        case 1:
-            runMenu<int>();
-            validChoice = true;
-            break;
-        case 2:
-            runMenu<float>();
-            validChoice = true;
-            break;
-        case 3:
-            runMenu<string>();
-            validChoice = true;
-            break;
-        case 4:
-            runMenu<char>();
-            validChoice = true;
-            break;
+        case 1: runMenu<int>(); break;
+        case 2: runMenu<float>(); break;
+        case 3: runMenu<string>(); break;
+        case 4: runMenu<char>(); break;
+        case 5: return; 
         default:
-            cout << "Invalid choice! Please select from 1 to 4." << endl;
+            cout << "Invalid choice! Please select from 1 to 5." << endl;
         }
-    } while (!validChoice);
+    }
 }
-
 template<typename t>
 void runMenu() {
     DoublyLinkedList<t> list;
@@ -100,8 +86,7 @@ void runMenu() {
         case 1:
             list.clear();
             cout << "List cleared. Create a new list." << endl;
-            createList();
-            break;
+            return;
         case 2:
             cout << "Enter data: ";
             readValue(value);
@@ -182,7 +167,7 @@ void runMenu() {
             break;
         case 10:
             cout << "Exit." << endl;
-            return;
+            exit(0);
         default:
             cout << "Invalid choice! Please select from 1 to 10." << endl;
         }

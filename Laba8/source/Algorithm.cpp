@@ -2,8 +2,7 @@
 
 template <typename t>
 bool Algorithm<t>::find(const DoublyLinkedList<t>& list, const t& value) const{
-    auto end = list.end();
-    for (auto it = list.begin(); it != end; ++it) {
+    for (auto it = list.begin(); it != list.end(); ++it) {
         if (*it == value) return true;
     }
     return false;
@@ -48,9 +47,6 @@ Node<t>* Algorithm<t>::mergeSort(Node<t>* head) {
 
 template <typename t>
 Node<t>* Algorithm<t>::merge(Node<t>* left, Node<t>* right) {
-    if (!left) return right;
-    if (!right) return left;
-
     Node<t>* result = nullptr;
     if (left->data <= right->data) {
         result = left;
